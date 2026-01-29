@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Lista de Analistas{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Analistas e Carga de Trabalho (PI)</h3>
+    <div class="d-flex gap-2">
+        <a href="{{ url_for('analyst_list_page') }}" class="btn btn-sm btnordenarnome">Ordenar por Nome</a>
+        <a href="{{ url_for('analyst_list_page', sort_by='pi') }}" class="btn btn-sm btnordenarpi">Ordenar por PI</a>
+        <!-- BOTÃO ADICIONADO -->
+        <a href="{{ url_for('suggest_general_redistribution_page') }}" class="btn btn-sm btn-sugestaogeral">Sugerir
+            Redistribuição Geral</a>
+        <a href="{{ url_for('reset_session') }}" class="btn btn-sm btnnovoarquivo">Carregar Novo Arquivo</a>
+    </div>
+</div>
+
+<div class="alert alert-light border shadow-sm mb-4">
+    <h5 class="alert-heading">Métricas da Equipe</h5>
+    <p class="mb-1">
+        A média de PIs por analista é de <strong>{{ average_pi | int }}</strong>.
+    </p>
+    <hr>
+    <p class="mb-0 small text-muted">
+        <span class="textdanger">■</span> PI em vermelho indica carga de trabalho 100% acima da média.
+        <br>
+        <span class="text-success">■</span> PI em verde indica carga de trabalho 50% abaixo da média.
+        <br>
+        <i class="bi bi-exclamation-triangle-fill text-danger"></i> Ícone vermelho indica que o analista está
+        temporariamente indisponível. Clique para alterar.
+    </p>
+</div>
+
+<div class="list-group shadow-sm">
+    {% for analyst in analysts %}
+    <div class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1 d-flex align-items-center gap-2">
+                <i class="bi availability-icon
+         {{ 'bi-exclamation-triangle-fill text-danger' if analyst.indisponivel
+            else 'bi-exclamation-triangle text-secondary' }}" data-analyst-name="{{ analyst['Responsável'] }}"
+                    title="Clique para marcar como {{ 'disponível' if analyst.indisponivel else 'indisponível' }}">
+                </i>
+                {{ analyst.Responsável }}
+            </h5>
+            <a href="{{ url_for('analyst_options_page', analyst_name=analyst.Responsável) }}"
+                class="btn btn-options-custom btn-sm">Opções</a>
+        </div>
+        <p class="mb-1 analyst-details-p">
+            <small>
+                Total de PIs: <span class="{{ analyst.pi_color }} fw-bold">{{ analyst.total_pi | int }}</span> |
+                Nº Categorias: {{ analyst.num_categories }} |
+                Grupo Predominante: <strong class="text-dark">{{ analyst.predominant_group }}</strong>
+            </small>
+        </p>
+    </div>
+    {% else %}
+    <div class="list-group-item">Nenhum analista encontrado nos dados. Faça o upload de um arquivo HTML para começar.
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

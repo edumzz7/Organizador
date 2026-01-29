@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}Revisão: {{ review_data.header.category }} ({{ review_data.header.date }}){% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('revisao_logs.static', filename='style.css') }}">
+{% endblock %}
+
+{% block extra_scripts %}
+<script id="app-data" type="application/json">
+        {
+            "reviewData": {{ review_data | tojson | safe }},
+            "tiposErro": {{ tipos_erro | tojson | safe }},
+            "detalhesCompleto": {{ detalhes_completo | tojson | safe }},
+            "detalhesRestrito": {{ detalhes_restrito | tojson | safe }}
+        }
+    </script>
+<script src="{{ url_for('revisao_logs.static', filename='script.js') }}"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="revisao-logs-content">
+    <a href="{{ url_for('revisao_logs.analyst_dashboard', employee_name=review_data.header.employee) }}"
+        class="back-link">&larr; Voltar para o Desempenho de {{ review_data.header.employee }}</a>
+    <h1>Revisão de Matchs</h1>
+    <form action="{{ url_for('revisao_logs.view_revisao', filename=filename) }}" method="post">
+        <div class="header-section">
+            <div class="form-group"><label>Funcionário:</label><input type="text"
+                    value="{{ review_data.header.employee }}" readonly class="readonly-input"></div>
+            <div class="form-group"><label>Categoria:</label><input type="text"
+                    value="{{ review_data.header.category }}" readonly class="readonly-input"></div>
+            <div class="form-group"><label>Data:</label><input type="text" value="{{ review_data.header.date }}"
+                    readonly class="readonly-input"></div>
+        </div>
+
+        <div class="controls-section">
+            <div class="calculator">
+                <label>Nº Revisados:</label><input type="number" name="revisados" id="revisadosInput"
+                    value="{{ review_data.calculator.revisados }}">
+                <label>Nº Erros:</label><input type="number" name="erros" id="errosInput"
+                    value="{{ review_data.calculator.erros }}">
+                <button type="button" onclick="calculateError();">Calcular %</button>
+                <strong id="resultLabel">% Erro: 0.0%</strong><strong id="graveErrorLabel" class="grave-text">- 0
+                    Graves</strong>
+            </div>
+            <div class="revisor-controls">
+                <div class="filter-toggle"><input type="checkbox" id="filterErrorsCheckbox"><label
+                        for="filterErrorsCheckbox">Mostrar Apenas Erros</label></div>
+                <div class="revisor-toggle"><label class="switch"><input type="checkbox" name="analyst_mode"
+                            id="revisorModeCheckbox" {% if review_data.analyst_mode %}checked{% endif %}><span
+                            class="slider"></span></label><label for="revisorModeCheckbox">Modo Revisor</label></div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="reviewTable">
+                <thead>
+                    <tr>
+                        <th class="col-num">Nº</th>
+                        <th class="col-p3">P3 (Valor Novo)</th>
+                        <th class="col-ligacao">Ligação</th>
+                        <th class="col-local">Local</th>
+                        <th class="col-tipo">Tipo de Erro</th>
+                        <th class="col-detalhe">Detalhes</th>
+                        <th class="col-infos">Infos</th>
+                        <th class="col-check">Grave</th>
+                        <th class="col-check revisor-col">Corrigido</th>
+                        <th class="col-obs revisor-col">Obs Revisor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in review_data.table_data %}<tr>
+                        <td class="num-cell">{{ loop.index }}</td>
+                        <td><input type="text" name="p3_{{ loop.index0 }}" value="{{ row.p3 }}" readonly
+                                class="readonly-input"></td>
+                        <td>{{ row.ligacao }}</td>
+                        <td>{{ row.local }}</td>
+                        <td><select name="tipo_erro_{{ loop.index0 }}" data-row-index="{{ loop.index0 }}"
+                                onchange="handleTipoErroChange(this);">
+                                {% for tipo in tipos_erro %}<option value="{{ loop.index0 }}" {% if
+                                    row.tipo_erro_idx==loop.index0 %}selected{% endif %}>{{ tipo }}</option>{% endfor %}
+                            </select></td>
+                        <td><select name="detalhes_erro_{{ loop.index0 }}" id="detalhes_{{ loop.index0 }}"></select>
+                        </td>
+                        <td><textarea name="infos_{{ loop.index0 }}">{{ row.infos }}</textarea></td>
+                        <td class="check-cell"><input type="checkbox" name="grave_{{ loop.index0 }}"
+                                class="grave-checkbox" {% if row.grave %}checked{% endif %}></td>
+                        <td class="check-cell revisor-col"><input type="checkbox" name="corrigido_{{ loop.index0 }}" {%
+                                if row.corrigido %}checked{% endif %}></td>
+                        <td class="revisor-col"><input type="text" name="obs_analista_{{ loop.index0 }}"
+                                value="{{ row.obs_analista }}"></td>
+                    </tr>{% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="action-buttons">
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+            <a href="{{ url_for('revisao_logs.exportar_xlsx', filename=filename) }}" class="btn btn-success">Exportar
+                Erros (XLSX)</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

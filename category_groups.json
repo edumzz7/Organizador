@@ -1,0 +1,3234 @@
+{
+    "1004": {
+        "code": "1004",
+        "name": "Máquinas de Solda Elétricas",
+        "group": "Ferramentas de Bancada e Máquinas Diversas"
+    },
+    "1009": {
+        "code": "1009",
+        "name": "Monitores Cardíacos",
+        "group": "Fitness e Esportes"
+    },
+    "101": {
+        "code": "101",
+        "name": "Purificador de Água",
+        "group": "Eletroportáteis para Bebidas Quentes e Água"
+    },
+    "103": {
+        "code": "103",
+        "name": "Grill / Sanduicheira",
+        "group": "Eletroportáteis"
+    },
+    "104": {
+        "code": "104",
+        "name": "Torradeira",
+        "group": "Eletroportáteis"
+    },
+    "105": {
+        "code": "105",
+        "name": "Secadora de Roupas",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "106": {
+        "code": "106",
+        "name": "Panela Elétrica",
+        "group": "Eletroportáteis"
+    },
+    "107": {
+        "code": "107",
+        "name": "Panificadora",
+        "group": "Eletroportáteis"
+    },
+    "108": {
+        "code": "108",
+        "name": "Espremedor de Frutas",
+        "group": "Eletroportáteis"
+    },
+    "109": {
+        "code": "109",
+        "name": "Ferro de Passar Roupas",
+        "group": "Cuidados Pessoais Elétricos"
+    },
+    "11": {
+        "code": "11",
+        "name": "Máquina de Lavar Roupas",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "110": {
+        "code": "110",
+        "name": "Fritadeira",
+        "group": "Eletroportáteis"
+    },
+    "1101": {
+        "code": "1101",
+        "name": "Fatiador de Frios",
+        "group": "Máquinas Industriais"
+    },
+    "111": {
+        "code": "111",
+        "name": "Máquina de Costura",
+        "group": "Ferramentas de Bancada e Máquinas Diversas"
+    },
+    "1137": {
+        "code": "1137",
+        "name": "Irrigador Oral",
+        "group": "Cuidados Pessoais Elétricos"
+    },
+    "1167": {
+        "code": "1167",
+        "name": "Rotuladores Eletrônicos",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "1172": {
+        "code": "1172",
+        "name": "Podadores",
+        "group": "Jardim e Área Externa"
+    },
+    "1175": {
+        "code": "1175",
+        "name": "Triturador de Pia",
+        "group": "Máquinas Industriais"
+    },
+    "118": {
+        "code": "118",
+        "name": "Jogos de Cama",
+        "group": "Móveis, Cama e Banho"
+    },
+    "1183": {
+        "code": "1183",
+        "name": "Monitor",
+        "group": "Periféricos e Acessórios de Informática"
+    },
+    "1184": {
+        "code": "1184",
+        "name": "Centrífuga de Alimentos",
+        "group": "Eletroportáteis"
+    },
+    "1185": {
+        "code": "1185",
+        "name": "Churrasqueiras",
+        "group": "Eletroportáteis"
+    },
+    "1186": {
+        "code": "1186",
+        "name": "Rádio Portátil",
+        "group": "Áudio e Vídeo"
+    },
+    "1188": {
+        "code": "1188",
+        "name": "Aparelho de Som",
+        "group": "Áudio e Vídeo"
+    },
+    "119": {
+        "code": "119",
+        "name": "Travesseiro",
+        "group": "Móveis, Cama e Banho"
+    },
+    "1190": {
+        "code": "1190",
+        "name": "Modelador de Cabelo",
+        "group": "Cuidados Pessoais Elétricos"
+    },
+    "1192": {
+        "code": "1192",
+        "name": "Console de Videogame",
+        "group": "Áudio e Vídeo"
+    },
+    "1193": {
+        "code": "1193",
+        "name": "Jogos para Consoles",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "1194": {
+        "code": "1194",
+        "name": "Mini Carro Bateria",
+        "group": "Itens para Bebês e Crianças"
+    },
+    "1195": {
+        "code": "1195",
+        "name": "Mini Moto Bateria",
+        "group": "Itens para Bebês e Crianças"
+    },
+    "1196": {
+        "code": "1196",
+        "name": "Máquina de Bordar",
+        "group": "Ferramentas de Bancada e Máquinas Diversas"
+    },
+    "12": {
+        "code": "12",
+        "name": "Geladeira / Refrigerador",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "1210": {
+        "code": "1210",
+        "name": "Caixas Acústicas e Amplificadas",
+        "group": "Áudio e Vídeo"
+    },
+    "1211": {
+        "code": "1211",
+        "name": "Colchas e cobre leitos",
+        "group": "Móveis, Cama e Banho"
+    },
+    "1212": {
+        "code": "1212",
+        "name": "Edredons",
+        "group": "Móveis, Cama e Banho"
+    },
+    "122": {
+        "code": "122",
+        "name": "Toalhas Avulsas",
+        "group": "Móveis, Cama e Banho"
+    },
+    "125": {
+        "code": "125",
+        "name": "Panelas Avulsas",
+        "group": "Perfumaria e Cuidados Corporais"
+    },
+    "13": {
+        "code": "13",
+        "name": "Fogão",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "1307": {
+        "code": "1307",
+        "name": "Relógio de Ponto",
+        "group": "Segurança e Automação Residencial"
+    },
+    "1319": {
+        "code": "1319",
+        "name": "Controladoras RAID",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "1321": {
+        "code": "1321",
+        "name": "HD Interno",
+        "group": "Periféricos e Acessórios de Informática"
+    },
+    "1363": {
+        "code": "1363",
+        "name": "Switch",
+        "group": "Periféricos e Acessórios de Informática"
+    },
+    "1373": {
+        "code": "1373",
+        "name": "Servidor",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "1391": {
+        "code": "1391",
+        "name": "Access Point e Roteadores",
+        "group": "Periféricos e Acessórios de Informática"
+    },
+    "14": {
+        "code": "14",
+        "name": "Lava Louças",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "1406": {
+        "code": "1406",
+        "name": "Fechadura Elétrica",
+        "group": "Segurança e Automação Residencial"
+    },
+    "1427": {
+        "code": "1427",
+        "name": "Cadeiras de Descanso e Bouncers",
+        "group": "Itens para Bebês e Crianças"
+    },
+    "1437": {
+        "code": "1437",
+        "name": "Betoneira",
+        "group": "Ferramentas de Bancada e Máquinas Diversas"
+    },
+    "145": {
+        "code": "145",
+        "name": "Aquecedor de Ambientes",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "1450": {
+        "code": "1450",
+        "name": "Prensa Hidráulica",
+        "group": "Equipamentos para Oficina Mecânica"
+    },
+    "1470": {
+        "code": "1470",
+        "name": "Acabamento para Registros",
+        "group": "Climatização, Limpeza e Tratamento de Ar"
+    },
+    "148": {
+        "code": "148",
+        "name": "Aparelho de Jantar",
+        "group": "Móveis, Cama e Banho"
+    },
+    "1506": {
+        "code": "1506",
+        "name": "Chave de Fenda",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "152": {
+        "code": "152",
+        "name": "Tablet",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "1546": {
+        "code": "1546",
+        "name": "Relógios",
+        "group": "Perfumaria e Cuidados Corporais"
+    },
+    "1565": {
+        "code": "1565",
+        "name": "Serra Elétrica",
+        "group": "Ferramentas Elétricas"
+    },
+    "1576": {
+        "code": "1576",
+        "name": "Martelete",
+        "group": "Ferramentas Elétricas"
+    },
+    "1577": {
+        "code": "1577",
+        "name": "Esmerilhadeira",
+        "group": "Ferramentas Elétricas"
+    },
+    "1582": {
+        "code": "1582",
+        "name": "Óleo Lubrificante para Caminhão",
+        "group": "Fluidos e Estética Automotiva"
+    },
+    "1595": {
+        "code": "1595",
+        "name": "Amortecedores para Auto",
+        "group": "Peças e Acessórios Automotivos (Mecânica)"
+    },
+    "1617": {
+        "code": "1617",
+        "name": "Kit Embreagem para Auto",
+        "group": "Peças e Acessórios Automotivos (Mecânica)"
+    },
+    "1646": {
+        "code": "1646",
+        "name": "Bola",
+        "group": "Fitness e Esportes"
+    },
+    "1669": {
+        "code": "1669",
+        "name": "Balança PDV",
+        "group": "Eletroportáteis"
+    },
+    "1683": {
+        "code": "1683",
+        "name": "Finalizadores",
+        "group": "Cosméticos para Cabelo"
+    },
+    "1693": {
+        "code": "1693",
+        "name": "All In One",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "1708": {
+        "code": "1708",
+        "name": "Batata Chips",
+        "group": "Alimentos e Snacks"
+    },
+    "1757": {
+        "code": "1757",
+        "name": "Motocultivador",
+        "group": "Jardim e Área Externa"
+    },
+    "1760": {
+        "code": "1760",
+        "name": "Soquetes",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "178": {
+        "code": "178",
+        "name": "Enceradeira",
+        "group": "Ferramentas de Bancada e Máquinas Diversas"
+    },
+    "1783": {
+        "code": "1783",
+        "name": "Shampoo",
+        "group": "Cosméticos para Cabelo"
+    },
+    "18": {
+        "code": "18",
+        "name": "Celulares",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "1808": {
+        "code": "1808",
+        "name": "Emagrecimento e Vitaminas",
+        "group": "Suplementos e Saúde"
+    },
+    "1809": {
+        "code": "1809",
+        "name": "Energia e Resistência",
+        "group": "Fitness e Esportes"
+    },
+    "1813": {
+        "code": "1813",
+        "name": "Controles e Joysticks",
+        "group": "Áudio e Vídeo"
+    },
+    "1817": {
+        "code": "1817",
+        "name": "Caixas para Home Theater",
+        "group": "Áudio e Vídeo"
+    },
+    "1818": {
+        "code": "1818",
+        "name": "Desktop",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "1819": {
+        "code": "1819",
+        "name": "Cartuchos e Toners",
+        "group": "Periféricos e Acessórios de Informática"
+    },
+    "1829": {
+        "code": "1829",
+        "name": "Wearables e Smartwatch",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "1839": {
+        "code": "1839",
+        "name": "Caixas de Som para Celulares e Smartphones",
+        "group": "Áudio e Vídeo"
+    },
+    "1850": {
+        "code": "1850",
+        "name": "Fones De Ouvido e Headsets",
+        "group": "Áudio e Vídeo"
+    },
+    "1858": {
+        "code": "1858",
+        "name": "Lâmina Serra Fita",
+        "group": "Acessórios para Ferramentas Elétricas"
+    },
+    "1859": {
+        "code": "1859",
+        "name": "Lâmina Serra Copo",
+        "group": "Acessórios para Ferramentas Elétricas"
+    },
+    "1860": {
+        "code": "1860",
+        "name": "Colchão",
+        "group": "Móveis, Cama e Banho"
+    },
+    "1861": {
+        "code": "1861",
+        "name": "Ducha Higiênica",
+        "group": "Bombas e Pressurização de Água"
+    },
+    "1862": {
+        "code": "1862",
+        "name": "Pressurizador",
+        "group": "Bombas e Pressurização de Água"
+    },
+    "1868": {
+        "code": "1868",
+        "name": "Câmera IP e Segurança",
+        "group": "Segurança e Automação Residencial"
+    },
+    "1869": {
+        "code": "1869",
+        "name": "Vídeo Porteiro",
+        "group": "Segurança e Automação Residencial"
+    },
+    "1874": {
+        "code": "1874",
+        "name": "Geladeira Portátil e Automotiva",
+        "group": "Eletroportáteis para Bebidas Quentes e Água"
+    },
+    "1875": {
+        "code": "1875",
+        "name": "Câmaras de Ar",
+        "group": "Pneus e Rodas"
+    },
+    "1880": {
+        "code": "1880",
+        "name": "Inaladores",
+        "group": "Cuidados Pessoais Elétricos"
+    },
+    "1882": {
+        "code": "1882",
+        "name": "Aparelhos e Lâminas de Barbear",
+        "group": "Cuidados Pessoais Elétricos"
+    },
+    "1883": {
+        "code": "1883",
+        "name": "Aparelhos e Lâminas Depilatórias",
+        "group": "Cuidados Pessoais Elétricos"
+    },
+    "1887": {
+        "code": "1887",
+        "name": "Mantas",
+        "group": "Móveis, Cama e Banho"
+    },
+    "1890": {
+        "code": "1890",
+        "name": "Jogos de Banho",
+        "group": "Móveis, Cama e Banho"
+    },
+    "19": {
+        "code": "19",
+        "name": "Telefonia Fixa",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "190": {
+        "code": "190",
+        "name": "Máquina de Gelo",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "1902": {
+        "code": "1902",
+        "name": "Soprador de Folhas a Combustão",
+        "group": "Jardim e Área Externa"
+    },
+    "1905": {
+        "code": "1905",
+        "name": "Chave com Catraca Pneumática",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "1906": {
+        "code": "1906",
+        "name": "Grampeadores Pneumáticos e Elétricos",
+        "group": "Ferramentas de Bancada e Máquinas Diversas"
+    },
+    "1907": {
+        "code": "1907",
+        "name": "Pistolas De Pintura",
+        "group": "Ferramentas Elétricas"
+    },
+    "1908": {
+        "code": "1908",
+        "name": "Serra Pneumática",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "1911": {
+        "code": "1911",
+        "name": "Compressores de Ar",
+        "group": "Ferramentas de Bancada e Máquinas Diversas"
+    },
+    "1912": {
+        "code": "1912",
+        "name": "Lixadeiras E Politriz Pneumática",
+        "group": "Ferramentas de Bancada e Máquinas Diversas"
+    },
+    "1916": {
+        "code": "1916",
+        "name": "Retíficas e Micro Retíficas",
+        "group": "Ferramentas Elétricas"
+    },
+    "1919": {
+        "code": "1919",
+        "name": "Tornos Elétricos",
+        "group": "Ferramentas Elétricas"
+    },
+    "192": {
+        "code": "192",
+        "name": "Impressora e Multifuncional",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "1923": {
+        "code": "1923",
+        "name": "Sopradores Térmicos",
+        "group": "Ferramentas Elétricas"
+    },
+    "1924": {
+        "code": "1924",
+        "name": "Lixadeiras E Politriz Elétrica",
+        "group": "Ferramentas Elétricas"
+    },
+    "1925": {
+        "code": "1925",
+        "name": "Tupias",
+        "group": "Ferramentas Elétricas"
+    },
+    "1926": {
+        "code": "1926",
+        "name": "Talhas e Guinchos Elétricos",
+        "group": "Ferramentas de Bancada e Máquinas Diversas"
+    },
+    "1937": {
+        "code": "1937",
+        "name": "Soprador de Folhas Elétrico",
+        "group": "Jardim e Área Externa"
+    },
+    "199": {
+        "code": "199",
+        "name": "Cobertores",
+        "group": "Móveis, Cama e Banho"
+    },
+    "2000": {
+        "code": "2000",
+        "name": "Bombas de Água",
+        "group": "Bombas e Pressurização de Água"
+    },
+    "201": {
+        "code": "201",
+        "name": "Chuveiros",
+        "group": "Eletroportáteis para Bebidas Quentes e Água"
+    },
+    "2011": {
+        "code": "2011",
+        "name": "Panela de Pressão",
+        "group": "Eletroportáteis"
+    },
+    "2029": {
+        "code": "2029",
+        "name": "Refis para Purificador de Água",
+        "group": "Eletroportáteis para Bebidas Quentes e Água"
+    },
+    "2046": {
+        "code": "2046",
+        "name": "Mesa de Jardim",
+        "group": "Jardim e Área Externa"
+    },
+    "2047": {
+        "code": "2047",
+        "name": "Conjunto de Mesa e Cadeiras de Jardim",
+        "group": "Jardim e Área Externa"
+    },
+    "2048": {
+        "code": "2048",
+        "name": "Cadeiras de Jardim",
+        "group": "Jardim e Área Externa"
+    },
+    "2064": {
+        "code": "2064",
+        "name": "Cozinhas",
+        "group": "Móveis, Cama e Banho"
+    },
+    "2072": {
+        "code": "2072",
+        "name": "Medidores e Trenas a Laser",
+        "group": "Medição e Instrumentação (Física e Precisão)"
+    },
+    "2073": {
+        "code": "2073",
+        "name": "Gabinete e Bancada Para Banheiros",
+        "group": "Móveis, Cama e Banho"
+    },
+    "2074": {
+        "code": "2074",
+        "name": "Kits de Acessórios",
+        "group": "Acessórios para Ferramentas Elétricas"
+    },
+    "2082": {
+        "code": "2082",
+        "name": "Organização de Ferramentas",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2084": {
+        "code": "2084",
+        "name": "Chave de Aperto com Catraca",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2085": {
+        "code": "2085",
+        "name": "Nível a Laser",
+        "group": "Medição e Instrumentação (Física e Precisão)"
+    },
+    "21": {
+        "code": "21",
+        "name": "Notebooks",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2104": {
+        "code": "2104",
+        "name": "Bancada Multifunções",
+        "group": "Ferramentas de Bancada e Máquinas Diversas"
+    },
+    "2105": {
+        "code": "2105",
+        "name": "Escova Elétrica Alisadora",
+        "group": "Cuidados Pessoais Elétricos"
+    },
+    "2107": {
+        "code": "2107",
+        "name": "Mochilas",
+        "group": "Fitness e Esportes"
+    },
+    "2110": {
+        "code": "2110",
+        "name": "Fonte para Servidores",
+        "group": "Periféricos e Acessórios de Informática"
+    },
+    "2115": {
+        "code": "2115",
+        "name": "Carregador para Furadeira/Parafusadeira",
+        "group": "Acessórios para Ferramentas Elétricas"
+    },
+    "2116": {
+        "code": "2116",
+        "name": "Bateria para Furadeira/Parafusadeira",
+        "group": "Acessórios para Ferramentas Elétricas"
+    },
+    "2117": {
+        "code": "2117",
+        "name": "Talhadeiras",
+        "group": "Acessórios para Ferramentas Elétricas"
+    },
+    "2118": {
+        "code": "2118",
+        "name": "Cortadores de Piso",
+        "group": "Ferramentas de Bancada e Máquinas Diversas"
+    },
+    "2119": {
+        "code": "2119",
+        "name": "Grampos",
+        "group": "Acessórios para Ferramentas Elétricas"
+    },
+    "2124": {
+        "code": "2124",
+        "name": "Alicates Manuais",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2125": {
+        "code": "2125",
+        "name": "Folha Lixa",
+        "group": "Acessórios para Ferramentas Elétricas"
+    },
+    "2130": {
+        "code": "2130",
+        "name": "Discos",
+        "group": "Acessórios para Ferramentas Elétricas"
+    },
+    "2131": {
+        "code": "2131",
+        "name": "Serras Manuais",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2132": {
+        "code": "2132",
+        "name": "Lâmina Serra Tico-tico",
+        "group": "Acessórios para Ferramentas Elétricas"
+    },
+    "2137": {
+        "code": "2137",
+        "name": "Lâmina Serra Sabre",
+        "group": "Acessórios para Ferramentas Elétricas"
+    },
+    "2143": {
+        "code": "2143",
+        "name": "Neumáticos Auto - Colombia",
+        "group": "Pneus e Rodas"
+    },
+    "2152": {
+        "code": "2152",
+        "name": "Neumáticos Moto - Colombia",
+        "group": "Pneus e Rodas"
+    },
+    "2162": {
+        "code": "2162",
+        "name": "Tênis",
+        "group": "Sapatos"
+    },
+    "2164": {
+        "code": "2164",
+        "name": "Chuteira",
+        "group": "Sapatos"
+    },
+    "2168": {
+        "code": "2168",
+        "name": "Pneu para Bicicleta",
+        "group": "Pneus e Rodas"
+    },
+    "2180": {
+        "code": "2180",
+        "name": "Kit Filtro + Bomba de piscina",
+        "group": "Jardim e Área Externa"
+    },
+    "2183": {
+        "code": "2183",
+        "name": "Bolsa Térmica",
+        "group": "Utilidades Domésticas"
+    },
+    "2184": {
+        "code": "2184",
+        "name": "Caixa Térmica",
+        "group": "Utilidades Domésticas"
+    },
+    "2185": {
+        "code": "2185",
+        "name": "Esmeriladora - México",
+        "group": "Ferramentas Elétricas"
+    },
+    "2186": {
+        "code": "2186",
+        "name": "Esmeril - Chile",
+        "group": "Ferramentas Elétricas"
+    },
+    "2187": {
+        "code": "2187",
+        "name": "Taladro y Atornillador - México",
+        "group": "Ferramentas Elétricas"
+    },
+    "2188": {
+        "code": "2188",
+        "name": "Taladro y Atornillador - Chile",
+        "group": "Ferramentas Elétricas"
+    },
+    "2191": {
+        "code": "2191",
+        "name": "Martillo/ Rotomartillo - Chile",
+        "group": "Ferramentas Elétricas"
+    },
+    "2192": {
+        "code": "2192",
+        "name": "Martillo/ Rotomartillo - México",
+        "group": "Ferramentas Elétricas"
+    },
+    "2193": {
+        "code": "2193",
+        "name": "Medidor de Distancia Laser - México",
+        "group": "Ferramentas Elétricas"
+    },
+    "2194": {
+        "code": "2194",
+        "name": "Medidor de Distancia Laser - Chile",
+        "group": "Ferramentas Elétricas"
+    },
+    "2195": {
+        "code": "2195",
+        "name": "Mototool - México",
+        "group": "Ferramentas Elétricas"
+    },
+    "2196": {
+        "code": "2196",
+        "name": "Mototool - Chile",
+        "group": "Ferramentas Elétricas"
+    },
+    "2197": {
+        "code": "2197",
+        "name": "Sierra Eléctrico - México",
+        "group": "Ferramentas Elétricas"
+    },
+    "2198": {
+        "code": "2198",
+        "name": "Sierra Eléctrico - Chile",
+        "group": "Ferramentas Elétricas"
+    },
+    "2201": {
+        "code": "2201",
+        "name": "Neumáticos Auto - Chile",
+        "group": "Pneus e Rodas"
+    },
+    "2206": {
+        "code": "2206",
+        "name": "Gerador de Ozônio",
+        "group": "Climatização, Limpeza e Tratamento de Ar"
+    },
+    "2209": {
+        "code": "2209",
+        "name": "Bomba para Roda de Água",
+        "group": "Bombas e Pressurização de Água"
+    },
+    "2212": {
+        "code": "2212",
+        "name": "Nivel láser - México",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2213": {
+        "code": "2213",
+        "name": "Nivel láser - Chile",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2215": {
+        "code": "2215",
+        "name": "Neumáticos Auto - Argentina",
+        "group": "Pneus e Rodas"
+    },
+    "2229": {
+        "code": "2229",
+        "name": "Torquímetros",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2230": {
+        "code": "2230",
+        "name": "Trenas",
+        "group": "Medição e Instrumentação (Física e Precisão)"
+    },
+    "2231": {
+        "code": "2231",
+        "name": "Chave em L",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2232": {
+        "code": "2232",
+        "name": "Neumáticos Auto - Peru",
+        "group": "Pneus e Rodas"
+    },
+    "2235": {
+        "code": "2235",
+        "name": "Protetor Térmico",
+        "group": "Cosméticos para Cabelo"
+    },
+    "2238": {
+        "code": "2238",
+        "name": "Chave de Aperto Ajustável",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2239": {
+        "code": "2239",
+        "name": "Chave de Aperto sem Catraca",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2241": {
+        "code": "2241",
+        "name": "Neumáticos Auto - Paraguai",
+        "group": "Pneus e Rodas"
+    },
+    "2242": {
+        "code": "2242",
+        "name": "Neumáticos Auto - Uruguay",
+        "group": "Pneus e Rodas"
+    },
+    "2245": {
+        "code": "2245",
+        "name": "Máquina de Corte",
+        "group": "Ferramentas Elétricas"
+    },
+    "2261": {
+        "code": "2261",
+        "name": "Neumáticos Auto - México",
+        "group": "Pneus e Rodas"
+    },
+    "2276": {
+        "code": "2276",
+        "name": "Adhesivos y Sellantes - Chile",
+        "group": "Materiais de Construção"
+    },
+    "2281": {
+        "code": "2281",
+        "name": "Abridor de Vinho Elétrico",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2282": {
+        "code": "2282",
+        "name": "Espumador e Vaporizador de Leite",
+        "group": "Eletroportáteis para Bebidas Quentes e Água"
+    },
+    "2298": {
+        "code": "2298",
+        "name": "Macaco Hidráulico",
+        "group": "Equipamentos para Oficina Mecânica"
+    },
+    "2302": {
+        "code": "2302",
+        "name": "Caixas Acústicas e Amplificadas - Chile",
+        "group": "Áudio e Vídeo"
+    },
+    "2303": {
+        "code": "2303",
+        "name": "Caixas de Som para Celulares e Smartphones - Chile",
+        "group": "Áudio e Vídeo"
+    },
+    "2304": {
+        "code": "2304",
+        "name": "Fones de Ouvido e Headset - Chile",
+        "group": "Áudio e Vídeo"
+    },
+    "2305": {
+        "code": "2305",
+        "name": "Home Theater - Chile",
+        "group": "Áudio e Vídeo"
+    },
+    "2306": {
+        "code": "2306",
+        "name": "Caixas Acústicas e Amplificadas - Colombia",
+        "group": "Áudio e Vídeo"
+    },
+    "2307": {
+        "code": "2307",
+        "name": "Caixas de Som para Celulares e Smartphones - Colombia",
+        "group": "Áudio e Vídeo"
+    },
+    "2308": {
+        "code": "2308",
+        "name": "Fones de Ouvido e Headset - Colombia",
+        "group": "Áudio e Vídeo"
+    },
+    "2309": {
+        "code": "2309",
+        "name": "Home Theater - Colombia",
+        "group": "Áudio e Vídeo"
+    },
+    "2310": {
+        "code": "2310",
+        "name": "Caixas Acústicas e Amplificadas - Peru",
+        "group": "Áudio e Vídeo"
+    },
+    "2311": {
+        "code": "2311",
+        "name": "Caixas de Som para Celulares e Smartphones - Peru",
+        "group": "Áudio e Vídeo"
+    },
+    "2312": {
+        "code": "2312",
+        "name": "Fones de Ouvido e Headset - Peru",
+        "group": "Áudio e Vídeo"
+    },
+    "2313": {
+        "code": "2313",
+        "name": "Home Theater - Peru",
+        "group": "Áudio e Vídeo"
+    },
+    "2327": {
+        "code": "2327",
+        "name": "Assistente Virtual",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2328": {
+        "code": "2328",
+        "name": "Dispositivo para TV",
+        "group": "Áudio e Vídeo"
+    },
+    "2329": {
+        "code": "2329",
+        "name": "Lâmpadas Inteligentes",
+        "group": "Segurança e Automação Residencial"
+    },
+    "2330": {
+        "code": "2330",
+        "name": "Controle Universal Inteligente",
+        "group": "Segurança e Automação Residencial"
+    },
+    "2331": {
+        "code": "2331",
+        "name": "Smart Plugues Inteligentes",
+        "group": "Segurança e Automação Residencial"
+    },
+    "2332": {
+        "code": "2332",
+        "name": "Sensores Inteligentes",
+        "group": "Segurança e Automação Residencial"
+    },
+    "2333": {
+        "code": "2333",
+        "name": "Barras de Cereais e Proteínas",
+        "group": "Alimentos e Snacks"
+    },
+    "2335": {
+        "code": "2335",
+        "name": "Cookies",
+        "group": "Alimentos e Snacks"
+    },
+    "2336": {
+        "code": "2336",
+        "name": "Massa para Lasanha",
+        "group": "Alimentos e Snacks"
+    },
+    "2338": {
+        "code": "2338",
+        "name": "Refresco em Pó",
+        "group": "Alimentos e Snacks"
+    },
+    "2339": {
+        "code": "2339",
+        "name": "Snacks Salgados",
+        "group": "Alimentos e Snacks"
+    },
+    "2340": {
+        "code": "2340",
+        "name": "Cereal Matinal",
+        "group": "Alimentos e Snacks"
+    },
+    "2341": {
+        "code": "2341",
+        "name": "Suporte para Bicicletas",
+        "group": "Fitness e Esportes"
+    },
+    "2342": {
+        "code": "2342",
+        "name": "Recortadora de Drywall Multidirecional",
+        "group": "Ferramentas Elétricas"
+    },
+    "2343": {
+        "code": "2343",
+        "name": "Torre de Iluminação",
+        "group": "Bombas e Pressurização de Água"
+    },
+    "2344": {
+        "code": "2344",
+        "name": "Lápis de Carpinteiro",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2346": {
+        "code": "2346",
+        "name": "Esquadro Profissional",
+        "group": "Medição e Instrumentação (Física e Precisão)"
+    },
+    "2347": {
+        "code": "2347",
+        "name": "Serrote Manual",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2348": {
+        "code": "2348",
+        "name": "Elevador Automotivo",
+        "group": "Equipamentos para Oficina Mecânica"
+    },
+    "2349": {
+        "code": "2349",
+        "name": "Balanceadora de Rodas",
+        "group": "Equipamentos para Oficina Mecânica"
+    },
+    "2350": {
+        "code": "2350",
+        "name": "Montadora e Desmontadora de Pneus",
+        "group": "Equipamentos para Oficina Mecânica"
+    },
+    "2352": {
+        "code": "2352",
+        "name": "Máquina de Limpeza de Bico",
+        "group": "Equipamentos para Oficina Mecânica"
+    },
+    "2353": {
+        "code": "2353",
+        "name": "Esquadrejadeira",
+        "group": "Ferramentas de Bancada e Máquinas Diversas"
+    },
+    "2354": {
+        "code": "2354",
+        "name": "Rampa Automotiva",
+        "group": "Equipamentos para Oficina Mecânica"
+    },
+    "2355": {
+        "code": "2355",
+        "name": "Alinhador Automotivo",
+        "group": "Equipamentos para Oficina Mecânica"
+    },
+    "2358": {
+        "code": "2358",
+        "name": "Adesivo Odontológico",
+        "group": "Produtos Odontológicos e Estéticos"
+    },
+    "2359": {
+        "code": "2359",
+        "name": "Agulha Gengival",
+        "group": "Produtos Odontológicos e Estéticos"
+    },
+    "2360": {
+        "code": "2360",
+        "name": "Anestésico",
+        "group": "Produtos Odontológicos e Estéticos"
+    },
+    "2361": {
+        "code": "2361",
+        "name": "Cimento Ionômero",
+        "group": "Produtos Odontológicos e Estéticos"
+    },
+    "2362": {
+        "code": "2362",
+        "name": "Clareador",
+        "group": "Produtos Odontológicos e Estéticos"
+    },
+    "2363": {
+        "code": "2363",
+        "name": "Condicionador Dental",
+        "group": "Produtos Odontológicos e Estéticos"
+    },
+    "2364": {
+        "code": "2364",
+        "name": "Flúor",
+        "group": "Produtos Odontológicos e Estéticos"
+    },
+    "2365": {
+        "code": "2365",
+        "name": "Grampo para Isolamento",
+        "group": "Produtos Odontológicos e Estéticos"
+    },
+    "2366": {
+        "code": "2366",
+        "name": "Moldagem",
+        "group": "Produtos Odontológicos e Estéticos"
+    },
+    "2367": {
+        "code": "2367",
+        "name": "Resina",
+        "group": "Produtos Odontológicos e Estéticos"
+    },
+    "2368": {
+        "code": "2368",
+        "name": "Preenchedor Injetável Facial",
+        "group": "Produtos Odontológicos e Estéticos"
+    },
+    "2372": {
+        "code": "2372",
+        "name": "Aparelho de Som - Chile",
+        "group": "Áudio e Vídeo"
+    },
+    "2373": {
+        "code": "2373",
+        "name": "Aparelho de Som - Colombia",
+        "group": "Áudio e Vídeo"
+    },
+    "2376": {
+        "code": "2376",
+        "name": "Aparelho de Som - Peru",
+        "group": "Áudio e Vídeo"
+    },
+    "2377": {
+        "code": "2377",
+        "name": "Misturadores de Argamassa",
+        "group": "Ferramentas Elétricas"
+    },
+    "2378": {
+        "code": "2378",
+        "name": "Copos e Canecas Térmicas",
+        "group": "Utilidades Domésticas"
+    },
+    "2383": {
+        "code": "2383",
+        "name": "Pote Térmico",
+        "group": "Utilidades Domésticas"
+    },
+    "2386": {
+        "code": "2386",
+        "name": "Garrafa Térmica de Hidratação",
+        "group": "Utilidades Domésticas"
+    },
+    "2390": {
+        "code": "2390",
+        "name": "Amoladora - Argentina",
+        "group": "Ferramentas Elétricas"
+    },
+    "2392": {
+        "code": "2392",
+        "name": "Martillo/ Rotomartillo - Argentina",
+        "group": "Ferramentas Elétricas"
+    },
+    "2393": {
+        "code": "2393",
+        "name": "Medidor de Distancia Laser - Argentina",
+        "group": "Ferramentas Elétricas"
+    },
+    "2394": {
+        "code": "2394",
+        "name": "Nivel Láser - Argentina",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2395": {
+        "code": "2395",
+        "name": "Minitornos - Argentina",
+        "group": "Ferramentas Elétricas"
+    },
+    "2396": {
+        "code": "2396",
+        "name": "Sierra Eléctrico - Argentina",
+        "group": "Ferramentas Elétricas"
+    },
+    "2397": {
+        "code": "2397",
+        "name": "Taladro y Atornillador - Argentina",
+        "group": "Ferramentas Elétricas"
+    },
+    "2402": {
+        "code": "2402",
+        "name": "Pulidora - Colombia",
+        "group": "Ferramentas Elétricas"
+    },
+    "2404": {
+        "code": "2404",
+        "name": "Martillo/ Rotomartillo - Colombia",
+        "group": "Ferramentas Elétricas"
+    },
+    "2405": {
+        "code": "2405",
+        "name": "Medidor de Distancia Laser - Colombia",
+        "group": "Ferramentas Elétricas"
+    },
+    "2406": {
+        "code": "2406",
+        "name": "Nivel láser - Colombia",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2407": {
+        "code": "2407",
+        "name": "Mototool - Colombia",
+        "group": "Ferramentas Elétricas"
+    },
+    "2408": {
+        "code": "2408",
+        "name": "Sierra Eléctrico - Colombia",
+        "group": "Ferramentas Elétricas"
+    },
+    "2409": {
+        "code": "2409",
+        "name": "Taladro y Atornillador - Colombia",
+        "group": "Ferramentas Elétricas"
+    },
+    "241": {
+        "code": "241",
+        "name": "Sabonete Líquido",
+        "group": "Perfumaria e Cuidados Corporais"
+    },
+    "2410": {
+        "code": "2410",
+        "name": "Camisetas Esportivas",
+        "group": "Fitness e Esportes"
+    },
+    "2411": {
+        "code": "2411",
+        "name": "Micrômetros",
+        "group": "Medição e Instrumentação (Física e Precisão)"
+    },
+    "2412": {
+        "code": "2412",
+        "name": "Paquímetros",
+        "group": "Medição e Instrumentação (Física e Precisão)"
+    },
+    "2413": {
+        "code": "2413",
+        "name": "Comparadores e Apalpadores",
+        "group": "Medição e Instrumentação (Física e Precisão)"
+    },
+    "2414": {
+        "code": "2414",
+        "name": "Suporte Magnético",
+        "group": "Medição e Instrumentação (Física e Precisão)"
+    },
+    "242": {
+        "code": "242",
+        "name": "Perfume",
+        "group": "Perfumaria e Cuidados Corporais"
+    },
+    "2423": {
+        "code": "2423",
+        "name": "Esmeriladora - Peru",
+        "group": "Ferramentas Elétricas"
+    },
+    "2424": {
+        "code": "2424",
+        "name": "Taladro y Atornillador - Peru",
+        "group": "Ferramentas Elétricas"
+    },
+    "2426": {
+        "code": "2426",
+        "name": "Martillo/ Rotomartillo - Peru",
+        "group": "Ferramentas Elétricas"
+    },
+    "2427": {
+        "code": "2427",
+        "name": "Medidor de Distancia Laser - Peru",
+        "group": "Ferramentas Elétricas"
+    },
+    "2428": {
+        "code": "2428",
+        "name": "Mototool - Peru",
+        "group": "Ferramentas Elétricas"
+    },
+    "2429": {
+        "code": "2429",
+        "name": "Sierra Eléctrico - Peru",
+        "group": "Ferramentas Elétricas"
+    },
+    "2431": {
+        "code": "2431",
+        "name": "Nivel láser - Peru",
+        "group": "Ferramentas Elétricas"
+    },
+    "2435": {
+        "code": "2435",
+        "name": "Algodão Facial",
+        "group": "Maquiagem"
+    },
+    "2436": {
+        "code": "2436",
+        "name": "Lápis de Sobrancelha",
+        "group": "Maquiagem"
+    },
+    "2437": {
+        "code": "2437",
+        "name": "Lápis de Olhos",
+        "group": "Maquiagem"
+    },
+    "2438": {
+        "code": "2438",
+        "name": "Pincéis para Olhos",
+        "group": "Maquiagem"
+    },
+    "2439": {
+        "code": "2439",
+        "name": "Pincéis para Rosto",
+        "group": "Maquiagem"
+    },
+    "2440": {
+        "code": "2440",
+        "name": "Máscaras Faciais",
+        "group": "Maquiagem"
+    },
+    "2441": {
+        "code": "2441",
+        "name": "Kit de Beleza",
+        "group": "Cosméticos para Cabelo"
+    },
+    "2442": {
+        "code": "2442",
+        "name": "Curvador de Cílios",
+        "group": "Maquiagem"
+    },
+    "2443": {
+        "code": "2443",
+        "name": "Limpeza e Demaquilantes",
+        "group": "Maquiagem"
+    },
+    "2444": {
+        "code": "2444",
+        "name": "Sombras",
+        "group": "Maquiagem"
+    },
+    "2445": {
+        "code": "2445",
+        "name": "Delineador para Olhos",
+        "group": "Maquiagem"
+    },
+    "2446": {
+        "code": "2446",
+        "name": "Delineador para Lábios",
+        "group": "Maquiagem"
+    },
+    "2447": {
+        "code": "2447",
+        "name": "Blush",
+        "group": "Maquiagem"
+    },
+    "2448": {
+        "code": "2448",
+        "name": "Iluminador",
+        "group": "Maquiagem"
+    },
+    "2449": {
+        "code": "2449",
+        "name": "Lápis de Boca",
+        "group": "Maquiagem"
+    },
+    "245": {
+        "code": "245",
+        "name": "Batom/Batom Líquido",
+        "group": "Maquiagem"
+    },
+    "2450": {
+        "code": "2450",
+        "name": "Gloss Labial",
+        "group": "Maquiagem"
+    },
+    "2451": {
+        "code": "2451",
+        "name": "Escova Facial",
+        "group": "Maquiagem"
+    },
+    "2452": {
+        "code": "2452",
+        "name": "Primer",
+        "group": "Maquiagem"
+    },
+    "2453": {
+        "code": "2453",
+        "name": "Base",
+        "group": "Maquiagem"
+    },
+    "2454": {
+        "code": "2454",
+        "name": "Corretivo Facial",
+        "group": "Maquiagem"
+    },
+    "2455": {
+        "code": "2455",
+        "name": "Pó Facial",
+        "group": "Maquiagem"
+    },
+    "2456": {
+        "code": "2456",
+        "name": "Máscara de Cílios",
+        "group": "Maquiagem"
+    },
+    "2457": {
+        "code": "2457",
+        "name": "Sérum para Cílios",
+        "group": "Maquiagem"
+    },
+    "2458": {
+        "code": "2458",
+        "name": "Séruns",
+        "group": "Maquiagem"
+    },
+    "2459": {
+        "code": "2459",
+        "name": "Creme de Barbear",
+        "group": "Maquiagem"
+    },
+    "2460": {
+        "code": "2460",
+        "name": "Pós Barba",
+        "group": "Perfumaria e Cuidados Corporais"
+    },
+    "2461": {
+        "code": "2461",
+        "name": "Tratamento para Olhos e Lábios",
+        "group": "Maquiagem"
+    },
+    "2462": {
+        "code": "2462",
+        "name": "Loção Facial",
+        "group": "Maquiagem"
+    },
+    "2463": {
+        "code": "2463",
+        "name": "Base Solar",
+        "group": "Perfumaria e Cuidados Corporais"
+    },
+    "2464": {
+        "code": "2464",
+        "name": "Protetor Corporal",
+        "group": "Perfumaria e Cuidados Corporais"
+    },
+    "2465": {
+        "code": "2465",
+        "name": "Protetor Facial",
+        "group": "Perfumaria e Cuidados Corporais"
+    },
+    "2466": {
+        "code": "2466",
+        "name": "Protetor Labial",
+        "group": "Perfumaria e Cuidados Corporais"
+    },
+    "2469": {
+        "code": "2469",
+        "name": "Multímetros",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2470": {
+        "code": "2470",
+        "name": "Termovisores",
+        "group": "Medição e Instrumentação (Física e Precisão)"
+    },
+    "2471": {
+        "code": "2471",
+        "name": "Alicate Amperímetro",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2472": {
+        "code": "2472",
+        "name": "Data Loggers",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2473": {
+        "code": "2473",
+        "name": "Termômetro de Medição",
+        "group": "Medição e Instrumentação (Física e Precisão)"
+    },
+    "2475": {
+        "code": "2475",
+        "name": "Smart Probes",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2476": {
+        "code": "2476",
+        "name": "Vacuômetros",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2477": {
+        "code": "2477",
+        "name": "Manifold",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "252": {
+        "code": "252",
+        "name": "Hidratantes",
+        "group": "Perfumaria e Cuidados Corporais"
+    },
+    "253": {
+        "code": "253",
+        "name": "Depiladores Elétricos",
+        "group": "Cuidados Pessoais Elétricos"
+    },
+    "2543": {
+        "code": "2543",
+        "name": "Lijadoras Y Pulidora Eléctrica - Chile",
+        "group": "Ferramentas Elétricas"
+    },
+    "2544": {
+        "code": "2544",
+        "name": "Fresadora/Ruteadora - Chile",
+        "group": "Ferramentas Elétricas"
+    },
+    "2545": {
+        "code": "2545",
+        "name": "Cloro de Piscina",
+        "group": "Jardim e Área Externa"
+    },
+    "2546": {
+        "code": "2546",
+        "name": "Anemômetro e Termoanemômetro",
+        "group": "Medição e Instrumentação (Física e Precisão)"
+    },
+    "255": {
+        "code": "255",
+        "name": "Aparadores e Barbeadores",
+        "group": "Cuidados Pessoais Elétricos"
+    },
+    "2551": {
+        "code": "2551",
+        "name": "Termohigrômetro",
+        "group": "Medição e Instrumentação (Física e Precisão)"
+    },
+    "2553": {
+        "code": "2553",
+        "name": "Motor Submerso",
+        "group": "Bombas e Pressurização de Água"
+    },
+    "256": {
+        "code": "256",
+        "name": "Chapinha",
+        "group": "Cuidados Pessoais Elétricos"
+    },
+    "2567": {
+        "code": "2567",
+        "name": "Frisante",
+        "group": "Vinhos e Espumantes"
+    },
+    "2571": {
+        "code": "2571",
+        "name": "Neumáticos Moto - Argentina",
+        "group": "Ferramentas Elétricas"
+    },
+    "2572": {
+        "code": "2572",
+        "name": "Óleo Corporal",
+        "group": "Perfumaria e Cuidados Corporais"
+    },
+    "2573": {
+        "code": "2573",
+        "name": "Sabonete em Barra",
+        "group": "Perfumaria e Cuidados Corporais"
+    },
+    "2574": {
+        "code": "2574",
+        "name": "Esfoliante",
+        "group": "Perfumaria e Cuidados Corporais"
+    },
+    "2575": {
+        "code": "2575",
+        "name": "Óleo Multifuncional",
+        "group": "Cosméticos para Cabelo"
+    },
+    "2576": {
+        "code": "2576",
+        "name": "Carrinho de Mão",
+        "group": "Jardim e Área Externa"
+    },
+    "2578": {
+        "code": "2578",
+        "name": "Amortecedores para Moto",
+        "group": "Peças e Acessórios Automotivos (Mecânica)"
+    },
+    "2579": {
+        "code": "2579",
+        "name": "Amortecedores para Caminhão",
+        "group": "Peças e Acessórios Automotivos (Mecânica)"
+    },
+    "258": {
+        "code": "258",
+        "name": "Máquinas de Cortar Cabelo",
+        "group": "Cuidados Pessoais Elétricos"
+    },
+    "2580": {
+        "code": "2580",
+        "name": "Pastilha de Freio para Auto",
+        "group": "Peças e Acessórios Automotivos (Mecânica)"
+    },
+    "2581": {
+        "code": "2581",
+        "name": "Pastilha de Freio para Moto",
+        "group": "Peças e Acessórios Automotivos (Mecânica)"
+    },
+    "2582": {
+        "code": "2582",
+        "name": "Pastilha de Freio para Caminhão",
+        "group": "Peças e Acessórios Automotivos (Mecânica)"
+    },
+    "2583": {
+        "code": "2583",
+        "name": "Disco de Freio para Auto",
+        "group": "Peças e Acessórios Automotivos (Mecânica)"
+    },
+    "2584": {
+        "code": "2584",
+        "name": "Disco de Freio para Moto",
+        "group": "Peças e Acessórios Automotivos (Mecânica)"
+    },
+    "2585": {
+        "code": "2585",
+        "name": "Disco de Freio para Caminhão",
+        "group": "Peças e Acessórios Automotivos (Mecânica)"
+    },
+    "2586": {
+        "code": "2586",
+        "name": "Kit Embreagem para Moto",
+        "group": "Peças e Acessórios Automotivos (Mecânica)"
+    },
+    "2587": {
+        "code": "2587",
+        "name": "Kit Embreagem para Caminhão",
+        "group": "Peças e Acessórios Automotivos (Mecânica)"
+    },
+    "2588": {
+        "code": "2588",
+        "name": "Bomba D'agua para Caminhão",
+        "group": "Peças e Acessórios Automotivos (Mecânica)"
+    },
+    "2589": {
+        "code": "2589",
+        "name": "Bomba D'agua para Moto",
+        "group": "Peças e Acessórios Automotivos (Mecânica)"
+    },
+    "259": {
+        "code": "259",
+        "name": "Secador de Cabelo",
+        "group": "Cuidados Pessoais Elétricos"
+    },
+    "2590": {
+        "code": "2590",
+        "name": "Óleo Lubrificante para Moto",
+        "group": "Fluidos e Estética Automotiva"
+    },
+    "2591": {
+        "code": "2591",
+        "name": "Óleo Lubrificante para Auto",
+        "group": "Fluidos e Estética Automotiva"
+    },
+    "2592": {
+        "code": "2592",
+        "name": "Bomba D'agua para Auto",
+        "group": "Peças e Acessórios Automotivos (Mecânica)"
+    },
+    "2596": {
+        "code": "2596",
+        "name": "Vino - Argentina",
+        "group": "Vinhos e Espumantes"
+    },
+    "2597": {
+        "code": "2597",
+        "name": "Vino Espumoso - Argentina",
+        "group": "Vinhos e Espumantes"
+    },
+    "2598": {
+        "code": "2598",
+        "name": "Vino Frizzante - Argentina",
+        "group": "Vinhos e Espumantes"
+    },
+    "2600": {
+        "code": "2600",
+        "name": "Adhesivos y Sellantes - México",
+        "group": "Materiais de Construção"
+    },
+    "2601": {
+        "code": "2601",
+        "name": "Tratamento Cerâmico",
+        "group": "Cosméticos para Cabelo"
+    },
+    "2602": {
+        "code": "2602",
+        "name": "Restaurador de Faróis",
+        "group": "Fluidos e Estética Automotiva"
+    },
+    "2603": {
+        "code": "2603",
+        "name": "Removedor de Insetos e Piche",
+        "group": "Fluidos e Estética Automotiva"
+    },
+    "2604": {
+        "code": "2604",
+        "name": "Proteção de superfícies",
+        "group": "Fluidos e Estética Automotiva"
+    },
+    "2605": {
+        "code": "2605",
+        "name": "Cera",
+        "group": "Fluidos e Estética Automotiva"
+    },
+    "2606": {
+        "code": "2606",
+        "name": "Polidor",
+        "group": "Fluidos e Estética Automotiva"
+    },
+    "2607": {
+        "code": "2607",
+        "name": "Preparação de Pintura",
+        "group": "Fluidos e Estética Automotiva"
+    },
+    "2608": {
+        "code": "2608",
+        "name": "Limpeza de Vidros",
+        "group": "Fluidos e Estética Automotiva"
+    },
+    "2609": {
+        "code": "2609",
+        "name": "Limpeza de Couro",
+        "group": "Fluidos e Estética Automotiva"
+    },
+    "261": {
+        "code": "261",
+        "name": "Condicionador",
+        "group": "Cosméticos para Cabelo"
+    },
+    "2610": {
+        "code": "2610",
+        "name": "Limpeza de Rodas e Pneus",
+        "group": "Fluidos e Estética Automotiva"
+    },
+    "2611": {
+        "code": "2611",
+        "name": "Limpeza de Interior",
+        "group": "Fluidos e Estética Automotiva"
+    },
+    "2612": {
+        "code": "2612",
+        "name": "Limpeza de Exterior",
+        "group": "Fluidos e Estética Automotiva"
+    },
+    "2613": {
+        "code": "2613",
+        "name": "Limpeza de Metais",
+        "group": "Fluidos e Estética Automotiva"
+    },
+    "2614": {
+        "code": "2614",
+        "name": "Limpeza a Seco",
+        "group": "Alimentos e Snacks"
+    },
+    "2615": {
+        "code": "2615",
+        "name": "Limpeza de Motor",
+        "group": "Equipamentos para Oficina Mecânica"
+    },
+    "2616": {
+        "code": "2616",
+        "name": "Lavado y Secado - México",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "2617": {
+        "code": "2617",
+        "name": "Freidora de Aire - México",
+        "group": "Eletroportáteis"
+    },
+    "2618": {
+        "code": "2618",
+        "name": "Lavavajillas - México",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "2619": {
+        "code": "2619",
+        "name": "Microondas - México",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "262": {
+        "code": "262",
+        "name": "Coloração",
+        "group": "Cosméticos para Cabelo"
+    },
+    "2620": {
+        "code": "2620",
+        "name": "Celulares - México",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2621": {
+        "code": "2621",
+        "name": "Refrigeradores - México",
+        "group": "Áudio e Vídeo"
+    },
+    "2622": {
+        "code": "2622",
+        "name": "Television - México",
+        "group": "Áudio e Vídeo"
+    },
+    "2628": {
+        "code": "2628",
+        "name": "Vino - Chile",
+        "group": "Vinhos e Espumantes"
+    },
+    "2629": {
+        "code": "2629",
+        "name": "Vino Espumoso - Chile",
+        "group": "Vinhos e Espumantes"
+    },
+    "2630": {
+        "code": "2630",
+        "name": "Vino Frizzante - Chile",
+        "group": "Vinhos e Espumantes"
+    },
+    "2632": {
+        "code": "2632",
+        "name": "Controlador de Pressão",
+        "group": "Bombas e Pressurização de Água"
+    },
+    "2633": {
+        "code": "2633",
+        "name": "Bombas para Fontes",
+        "group": "Bombas e Pressurização de Água"
+    },
+    "2634": {
+        "code": "2634",
+        "name": "Controle de Acesso",
+        "group": "Segurança e Automação Residencial"
+    },
+    "2635": {
+        "code": "2635",
+        "name": "Lentes de Contacto - México",
+        "group": "Produtos Odontológicos e Estéticos"
+    },
+    "2636": {
+        "code": "2636",
+        "name": "Aire Acondicionado - México",
+        "group": "Climatização, Limpeza e Tratamento de Ar"
+    },
+    "2638": {
+        "code": "2638",
+        "name": "Tônico Facial",
+        "group": "Maquiagem"
+    },
+    "264": {
+        "code": "264",
+        "name": "Escovas e Pentes de Cabelo",
+        "group": "Cosméticos para Cabelo"
+    },
+    "2640": {
+        "code": "2640",
+        "name": "Adhesives and Sealants - Canadá",
+        "group": "Materiais de Construção"
+    },
+    "2641": {
+        "code": "2641",
+        "name": "Additives for Concrete and Mortar - Canadá",
+        "group": "Materiais de Construção"
+    },
+    "2643": {
+        "code": "2643",
+        "name": "Cements and Masses - Canadá",
+        "group": "Materiais de Construção"
+    },
+    "2644": {
+        "code": "2644",
+        "name": "Coating - Canadá",
+        "group": "Materiais de Construção"
+    },
+    "2645": {
+        "code": "2645",
+        "name": "Adhesives and Sealants - USA",
+        "group": "Materiais de Construção"
+    },
+    "2646": {
+        "code": "2646",
+        "name": "Primer - Canadá",
+        "group": "Materiais de Construção"
+    },
+    "2647": {
+        "code": "2647",
+        "name": "Additives for Concrete and Mortar - USA",
+        "group": "Materiais de Construção"
+    },
+    "2649": {
+        "code": "2649",
+        "name": "Waterproofing - Canadá",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2650": {
+        "code": "2650",
+        "name": "Cements and Masses - USA",
+        "group": "Materiais de Construção"
+    },
+    "2651": {
+        "code": "2651",
+        "name": "Caulking Guns - Canadá",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2652": {
+        "code": "2652",
+        "name": "Expanding Foams - Canadá",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2654": {
+        "code": "2654",
+        "name": "Primer - USA",
+        "group": "Materiais de Construção"
+    },
+    "2655": {
+        "code": "2655",
+        "name": "Support Foams for Sealants - USA",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2657": {
+        "code": "2657",
+        "name": "Waterproofing - USA",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2658": {
+        "code": "2658",
+        "name": "Cleaning Agents - Canadá",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2660": {
+        "code": "2660",
+        "name": "Adhesivos y Sellantes  - Uruguay",
+        "group": "Materiais de Construção"
+    },
+    "2661": {
+        "code": "2661",
+        "name": "Cementos y masas - Uruguay",
+        "group": "Materiais de Construção"
+    },
+    "2662": {
+        "code": "2662",
+        "name": "Primer - Uruguay",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2663": {
+        "code": "2663",
+        "name": "Espumas Expansivas - Uruguay",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2664": {
+        "code": "2664",
+        "name": "Revestimientos  - Uruguay",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2665": {
+        "code": "2665",
+        "name": "Pinturas - Uruguay",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2666": {
+        "code": "2666",
+        "name": "Impermeabilización - Uruguay",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2667": {
+        "code": "2667",
+        "name": "Componentes de Refuerzo - Uruguay",
+        "group": "Materiais de Construção"
+    },
+    "2668": {
+        "code": "2668",
+        "name": "Aditivos para Hormigón y Mortero - Chile",
+        "group": "Materiais de Construção"
+    },
+    "2669": {
+        "code": "2669",
+        "name": "Cementos y Masas - Chile",
+        "group": "Materiais de Construção"
+    },
+    "2671": {
+        "code": "2671",
+        "name": "Primer  - Chile",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "2672": {
+        "code": "2672",
+        "name": "Espuma de Soporte para Selladores - Chile",
+        "group": "Materiais de Construção"
+    },
+    "2673": {
+        "code": "2673",
+        "name": "Impermeabilización - Chile",
+        "group": "Materiais de Construção"
+    },
+    "2674": {
+        "code": "2674",
+        "name": "Espumas Expansivas  - Chile",
+        "group": "Materiais de Construção"
+    },
+    "2675": {
+        "code": "2675",
+        "name": "Pistolas de Calafateo - Chile",
+        "group": "Materiais de Construção"
+    },
+    "2676": {
+        "code": "2676",
+        "name": "Desmoldantes  - Chile",
+        "group": "Materiais de Construção"
+    },
+    "2677": {
+        "code": "2677",
+        "name": "Revestimientos - Chile",
+        "group": "Materiais de Construção"
+    },
+    "2678": {
+        "code": "2678",
+        "name": "Componentes de Refuerzo - Chile",
+        "group": "Materiais de Construção"
+    },
+    "2679": {
+        "code": "2679",
+        "name": "Agregados Minerales - Chile",
+        "group": "Materiais de Construção"
+    },
+    "2680": {
+        "code": "2680",
+        "name": "Alicate Terrômetro",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2681": {
+        "code": "2681",
+        "name": "Alicate Wattímetro",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2682": {
+        "code": "2682",
+        "name": "Megômetro",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2683": {
+        "code": "2683",
+        "name": "Terrômetro",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2684": {
+        "code": "2684",
+        "name": "Boroscópio",
+        "group": "Medição e Instrumentação (Física e Precisão)"
+    },
+    "2685": {
+        "code": "2685",
+        "name": "Detector de Tensão",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2686": {
+        "code": "2686",
+        "name": "Medidor de Espessura",
+        "group": "Medição e Instrumentação (Física e Precisão)"
+    },
+    "2687": {
+        "code": "2687",
+        "name": "Medidor de Vibração",
+        "group": "Medição e Instrumentação (Física e Precisão)"
+    },
+    "2688": {
+        "code": "2688",
+        "name": "Pontas de Prova",
+        "group": "Acessórios para Ferramentas Elétricas"
+    },
+    "2689": {
+        "code": "2689",
+        "name": "Capacímetro",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2690": {
+        "code": "2690",
+        "name": "Testador de Bateria",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2691": {
+        "code": "2691",
+        "name": "Fonte de Alimentação",
+        "group": "Periféricos e Acessórios de Informática"
+    },
+    "2692": {
+        "code": "2692",
+        "name": "Aditivos para Hormigón y Mortero - Uruguay",
+        "group": "Materiais de Construção"
+    },
+    "2693": {
+        "code": "2693",
+        "name": "Relés de Estado Sólido",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2694": {
+        "code": "2694",
+        "name": "Transmissores de Temperatura e Umidade",
+        "group": "Medição e Instrumentação (Elétrica e Eletrônica)"
+    },
+    "2695": {
+        "code": "2695",
+        "name": "Controladores de Processos",
+        "group": "Bombas e Pressurização de Água"
+    },
+    "2696": {
+        "code": "2696",
+        "name": "Indicadores de Processos",
+        "group": "Bombas e Pressurização de Água"
+    },
+    "2697": {
+        "code": "2697",
+        "name": "Neumáticos Auto - Equador",
+        "group": "Pneus e Rodas"
+    },
+    "2698": {
+        "code": "2698",
+        "name": "Neumáticos Auto - Guatemala",
+        "group": "Pneus e Rodas"
+    },
+    "2704": {
+        "code": "2704",
+        "name": "Acessórios para Refrigeradores",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "2705": {
+        "code": "2705",
+        "name": "Acessórios para Máquinas de Lavar Roupas",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "2706": {
+        "code": "2706",
+        "name": "Amassadeiras Industriais",
+        "group": "Máquinas Industriais"
+    },
+    "2707": {
+        "code": "2707",
+        "name": "Câmaras de Fermentação",
+        "group": "Máquinas Industriais"
+    },
+    "2708": {
+        "code": "2708",
+        "name": "Misturadores de Massas Elétrico",
+        "group": "Máquinas Industriais"
+    },
+    "2709": {
+        "code": "2709",
+        "name": "Desfiadores de Carne",
+        "group": "Máquinas Industriais"
+    },
+    "271": {
+        "code": "271",
+        "name": "Cama Box + colchão",
+        "group": "Móveis, Cama e Banho"
+    },
+    "2710": {
+        "code": "2710",
+        "name": "Divisoras de Massas",
+        "group": "Máquinas Industriais"
+    },
+    "2711": {
+        "code": "2711",
+        "name": "Extrusoras para Massas",
+        "group": "Máquinas Industriais"
+    },
+    "2712": {
+        "code": "2712",
+        "name": "Fatiadeira de Pães",
+        "group": "Máquinas Industriais"
+    },
+    "2713": {
+        "code": "2713",
+        "name": "Modeladoras de Pães",
+        "group": "Máquinas Industriais"
+    },
+    "2714": {
+        "code": "2714",
+        "name": "Moedor de Pães",
+        "group": "Máquinas Industriais"
+    },
+    "2715": {
+        "code": "2715",
+        "name": "Raladores Industriais",
+        "group": "Máquinas Industriais"
+    },
+    "2716": {
+        "code": "2716",
+        "name": "Resfriador de Água Industrial",
+        "group": "Máquinas Industriais"
+    },
+    "2717": {
+        "code": "2717",
+        "name": "Vino - Uruguay",
+        "group": "Vinhos e Espumantes"
+    },
+    "2718": {
+        "code": "2718",
+        "name": "Vino Espumoso - Uruguay",
+        "group": "Vinhos e Espumantes"
+    },
+    "2719": {
+        "code": "2719",
+        "name": "Vino Frizzante - Uruguay",
+        "group": "Vinhos e Espumantes"
+    },
+    "2720": {
+        "code": "2720",
+        "name": "Hidrolavadora Eléctrica - Argentina",
+        "group": "Ferramentas Elétricas"
+    },
+    "2721": {
+        "code": "2721",
+        "name": "Hidrolavadora Eléctrica - Peru",
+        "group": "Ferramentas Elétricas"
+    },
+    "2722": {
+        "code": "2722",
+        "name": "Hidrolavadora Eléctrica - Chile",
+        "group": "Ferramentas Elétricas"
+    },
+    "2723": {
+        "code": "2723",
+        "name": "Hidrolavadora Eléctrica - Colombia",
+        "group": "Ferramentas Elétricas"
+    },
+    "2724": {
+        "code": "2724",
+        "name": "Hidrolavadora Eléctrica - México",
+        "group": "Ferramentas Elétricas"
+    },
+    "2730": {
+        "code": "2730",
+        "name": "Bebidas Gaseosas - Chile",
+        "group": "Alimentos e Snacks"
+    },
+    "2732": {
+        "code": "2732",
+        "name": "Espumas Expansivas",
+        "group": "Materiais de Construção"
+    },
+    "2734": {
+        "code": "2734",
+        "name": "Adesivos e Selantes",
+        "group": "Materiais de Construção"
+    },
+    "2735": {
+        "code": "2735",
+        "name": "Aditivos PVA",
+        "group": "Materiais de Construção"
+    },
+    "2737": {
+        "code": "2737",
+        "name": "Servers - México",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2738": {
+        "code": "2738",
+        "name": "Processors - México",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2739": {
+        "code": "2739",
+        "name": "SSD - México",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2740": {
+        "code": "2740",
+        "name": "Internal HDD - México",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2741": {
+        "code": "2741",
+        "name": "RAM Memory - México",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2742": {
+        "code": "2742",
+        "name": "RAID Controller - México",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2743": {
+        "code": "2743",
+        "name": "Servers - Argentina",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2744": {
+        "code": "2744",
+        "name": "Processors - Argentina",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2745": {
+        "code": "2745",
+        "name": "SSD - Argentina",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2746": {
+        "code": "2746",
+        "name": "Internal HDD - Argentina",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2747": {
+        "code": "2747",
+        "name": "RAM Memory - Argentina",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2748": {
+        "code": "2748",
+        "name": "RAID Controller - Argentina",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2749": {
+        "code": "2749",
+        "name": "Servers - USA",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2750": {
+        "code": "2750",
+        "name": "Processors - USA",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2751": {
+        "code": "2751",
+        "name": "SSD - USA",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2752": {
+        "code": "2752",
+        "name": "Internal HDD - USA",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2753": {
+        "code": "2753",
+        "name": "RAM Memory - USA",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2754": {
+        "code": "2754",
+        "name": "RAID Controller - USA",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2755": {
+        "code": "2755",
+        "name": "Servers - Canadá",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2756": {
+        "code": "2756",
+        "name": "Processors - Canadá",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2757": {
+        "code": "2757",
+        "name": "SSD - Canadá",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2758": {
+        "code": "2758",
+        "name": "Internal HDD - Canadá",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2759": {
+        "code": "2759",
+        "name": "RAM Memory - Canadá",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2760": {
+        "code": "2760",
+        "name": "RAID Controller - Canadá",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2762": {
+        "code": "2762",
+        "name": "Varas de Pescar",
+        "group": "Fitness e Esportes"
+    },
+    "2763": {
+        "code": "2763",
+        "name": "Molinetes e Carretilhas",
+        "group": "Fitness e Esportes"
+    },
+    "2765": {
+        "code": "2765",
+        "name": "Taça Térmica",
+        "group": "Utilidades Domésticas"
+    },
+    "2766": {
+        "code": "2766",
+        "name": "Mugs Térmicos",
+        "group": "Utilidades Domésticas"
+    },
+    "2769": {
+        "code": "2769",
+        "name": "Estação de Solda",
+        "group": "Máquinas Industriais"
+    },
+    "277": {
+        "code": "277",
+        "name": "Gerador de Energia",
+        "group": "Ferramentas de Bancada e Máquinas Diversas"
+    },
+    "2770": {
+        "code": "2770",
+        "name": "Botas - México",
+        "group": "Sapatos"
+    },
+    "2771": {
+        "code": "2771",
+        "name": "Calzados - México",
+        "group": "Sapatos"
+    },
+    "2775": {
+        "code": "2775",
+        "name": "Sacos de Lixo",
+        "group": "Utilidades Domésticas"
+    },
+    "2776": {
+        "code": "2776",
+        "name": "Sacos para Alimentos",
+        "group": "Utilidades Domésticas"
+    },
+    "2777": {
+        "code": "2777",
+        "name": "Papel Antiaderente",
+        "group": "Utilidades Domésticas"
+    },
+    "2785": {
+        "code": "2785",
+        "name": "Wine - USA",
+        "group": "Vinhos e Espumantes"
+    },
+    "2786": {
+        "code": "2786",
+        "name": "Sparkling Wine - USA",
+        "group": "Vinhos e Espumantes"
+    },
+    "2787": {
+        "code": "2787",
+        "name": "Frizzante Wine - USA",
+        "group": "Vinhos e Espumantes"
+    },
+    "2794": {
+        "code": "2794",
+        "name": "Servers - France",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2795": {
+        "code": "2795",
+        "name": "RAM Memory - France",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2796": {
+        "code": "2796",
+        "name": "RAID Controller - France",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2797": {
+        "code": "2797",
+        "name": "Internal HDD - France",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2798": {
+        "code": "2798",
+        "name": "SSD - France",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2799": {
+        "code": "2799",
+        "name": "Processors - France",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2802": {
+        "code": "2802",
+        "name": "Servers - UK",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2803": {
+        "code": "2803",
+        "name": "RAM Memory - UK",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2804": {
+        "code": "2804",
+        "name": "SSD - UK",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2805": {
+        "code": "2805",
+        "name": "Internal HDD - UK",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2806": {
+        "code": "2806",
+        "name": "RAID Controller - UK",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2807": {
+        "code": "2807",
+        "name": "Processors - UK",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2808": {
+        "code": "2808",
+        "name": "SSD - Germany",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2809": {
+        "code": "2809",
+        "name": "Processors - Germany",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2810": {
+        "code": "2810",
+        "name": "Internal HDD - Germany",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2811": {
+        "code": "2811",
+        "name": "RAID Controller - Germany",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2812": {
+        "code": "2812",
+        "name": "Servers - Germany",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2813": {
+        "code": "2813",
+        "name": "RAM Memory - Germany",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2814": {
+        "code": "2814",
+        "name": "Servers - Singapore",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2815": {
+        "code": "2815",
+        "name": "Servers - Australia",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2816": {
+        "code": "2816",
+        "name": "Servers - Japan",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2817": {
+        "code": "2817",
+        "name": "Processors - Singapore",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2818": {
+        "code": "2818",
+        "name": "Processors - Australia",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2819": {
+        "code": "2819",
+        "name": "Processors - Japan",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2820": {
+        "code": "2820",
+        "name": "RAM Memory - Singapore",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2821": {
+        "code": "2821",
+        "name": "RAM Memory - Australia",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2822": {
+        "code": "2822",
+        "name": "RAM Memory - Japan",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2823": {
+        "code": "2823",
+        "name": "RAID Controller - Singapore",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2824": {
+        "code": "2824",
+        "name": "RAID Controller - Australia",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2825": {
+        "code": "2825",
+        "name": "RAID Controller - Japan",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2826": {
+        "code": "2826",
+        "name": "Internal HDD - Singapore",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2827": {
+        "code": "2827",
+        "name": "Internal HDD - Australia",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2828": {
+        "code": "2828",
+        "name": "Internal HDD - Japan",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2829": {
+        "code": "2829",
+        "name": "SSD - Singapore",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2830": {
+        "code": "2830",
+        "name": "SSD - Australia",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "2831": {
+        "code": "2831",
+        "name": "SSD - Japan",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "285": {
+        "code": "285",
+        "name": "Pneu para Automóveis",
+        "group": "Pneus e Rodas"
+    },
+    "286": {
+        "code": "286",
+        "name": "Pneu para Moto",
+        "group": "Pneus e Rodas"
+    },
+    "287": {
+        "code": "287",
+        "name": "Pneu para Caminhão",
+        "group": "Pneus e Rodas"
+    },
+    "288": {
+        "code": "288",
+        "name": "Pneu Agrícola",
+        "group": "Pneus e Rodas"
+    },
+    "312": {
+        "code": "312",
+        "name": "Player Automotivo",
+        "group": "Equipamentos para Oficina Mecânica"
+    },
+    "316": {
+        "code": "316",
+        "name": "Chaleira e Jarra Elétrica",
+        "group": "Eletroportáteis para Bebidas Quentes e Água"
+    },
+    "317": {
+        "code": "317",
+        "name": "Faca Elétrica",
+        "group": "Eletroportáteis"
+    },
+    "318": {
+        "code": "318",
+        "name": "Moedor de Grãos",
+        "group": "Eletroportáteis"
+    },
+    "329": {
+        "code": "329",
+        "name": "Vinho",
+        "group": "Vinhos e Espumantes"
+    },
+    "332": {
+        "code": "332",
+        "name": "Espumante",
+        "group": "Vinhos e Espumantes"
+    },
+    "337": {
+        "code": "337",
+        "name": "Biscoito Recheado",
+        "group": "Alimentos e Snacks"
+    },
+    "344": {
+        "code": "344",
+        "name": "Panettone",
+        "group": "Alimentos e Snacks"
+    },
+    "358": {
+        "code": "358",
+        "name": "Processadores",
+        "group": "Periféricos e Acessórios de Informática"
+    },
+    "359": {
+        "code": "359",
+        "name": "Memória RAM",
+        "group": "Periféricos e Acessórios de Informática"
+    },
+    "360": {
+        "code": "360",
+        "name": "Mouse e Teclado",
+        "group": "Periféricos e Acessórios de Informática"
+    },
+    "362": {
+        "code": "362",
+        "name": "Projetores",
+        "group": "Áudio e Vídeo"
+    },
+    "364": {
+        "code": "364",
+        "name": "Vassoura Elétrica",
+        "group": "Ferramentas de Bancada e Máquinas Diversas"
+    },
+    "371": {
+        "code": "371",
+        "name": "Umidificador",
+        "group": "Climatização, Limpeza e Tratamento de Ar"
+    },
+    "372": {
+        "code": "372",
+        "name": "Purificadores de Ar",
+        "group": "Climatização, Limpeza e Tratamento de Ar"
+    },
+    "374": {
+        "code": "374",
+        "name": "Medidores de Pressão",
+        "group": "Fitness e Esportes"
+    },
+    "381": {
+        "code": "381",
+        "name": "WebCam",
+        "group": "Periféricos e Acessórios de Informática"
+    },
+    "384": {
+        "code": "384",
+        "name": "Balança Corporal",
+        "group": "Cuidados Pessoais Elétricos"
+    },
+    "390": {
+        "code": "390",
+        "name": "Chopeira",
+        "group": "Eletroportáteis"
+    },
+    "392": {
+        "code": "392",
+        "name": "Garrafa Térmica",
+        "group": "Eletroportáteis para Bebidas Quentes e Água"
+    },
+    "393": {
+        "code": "393",
+        "name": "Laminador de Massa",
+        "group": "Máquinas Industriais"
+    },
+    "394": {
+        "code": "394",
+        "name": "Mixer",
+        "group": "Eletroportáteis"
+    },
+    "396": {
+        "code": "396",
+        "name": "Pipoqueiras",
+        "group": "Eletroportáteis"
+    },
+    "400": {
+        "code": "400",
+        "name": "Escova Rotativa Modeladora",
+        "group": "Cuidados Pessoais Elétricos"
+    },
+    "417": {
+        "code": "417",
+        "name": "Babá Eletrônica",
+        "group": "Itens para Bebês e Crianças"
+    },
+    "419": {
+        "code": "419",
+        "name": "Berços Portáteis e Cercados",
+        "group": "Itens para Bebês e Crianças"
+    },
+    "423": {
+        "code": "423",
+        "name": "Cadeirões",
+        "group": "Itens para Bebês e Crianças"
+    },
+    "428": {
+        "code": "428",
+        "name": "Esterilizadores de Ar",
+        "group": "Climatização, Limpeza e Tratamento de Ar"
+    },
+    "431": {
+        "code": "431",
+        "name": "Andadores e Primeiros Passos",
+        "group": "Itens para Bebês e Crianças"
+    },
+    "432": {
+        "code": "432",
+        "name": "Bebê Conforto",
+        "group": "Itens para Bebês e Crianças"
+    },
+    "433": {
+        "code": "433",
+        "name": "Cadeira de Bebê para Automóvel",
+        "group": "Itens para Bebês e Crianças"
+    },
+    "434": {
+        "code": "434",
+        "name": "Carrinho de Bebê",
+        "group": "Itens para Bebês e Crianças"
+    },
+    "442": {
+        "code": "442",
+        "name": "Banheiras de Bebê",
+        "group": "Itens para Bebês e Crianças"
+    },
+    "446": {
+        "code": "446",
+        "name": "Troninhos e Redutores",
+        "group": "Itens para Bebês e Crianças"
+    },
+    "49": {
+        "code": "49",
+        "name": "Cooktop",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "5": {
+        "code": "5",
+        "name": "Ar Condicionado",
+        "group": "Climatização, Limpeza e Tratamento de Ar"
+    },
+    "509": {
+        "code": "509",
+        "name": "Lâmpada",
+        "group": "Segurança e Automação Residencial"
+    },
+    "513": {
+        "code": "513",
+        "name": "Fornos Industriais",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "514": {
+        "code": "514",
+        "name": "Balcões Frigoríficos e Expositores",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "526": {
+        "code": "526",
+        "name": "Guarda-Roupas",
+        "group": "Móveis, Cama e Banho"
+    },
+    "54": {
+        "code": "54",
+        "name": "Depurador de Ar",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "592": {
+        "code": "592",
+        "name": "Piscinas",
+        "group": "Jardim e Área Externa"
+    },
+    "595": {
+        "code": "595",
+        "name": "Bicicletas",
+        "group": "Fitness e Esportes"
+    },
+    "597": {
+        "code": "597",
+        "name": "Bicicletas Ergométricas",
+        "group": "Fitness e Esportes"
+    },
+    "598": {
+        "code": "598",
+        "name": "Esteiras Ergométricas",
+        "group": "Fitness e Esportes"
+    },
+    "6": {
+        "code": "6",
+        "name": "TV",
+        "group": "Áudio e Vídeo"
+    },
+    "601": {
+        "code": "601",
+        "name": "Aparelhos Elípticos",
+        "group": "Fitness e Esportes"
+    },
+    "604": {
+        "code": "604",
+        "name": "Simulador de Caminhada",
+        "group": "Fitness e Esportes"
+    },
+    "654": {
+        "code": "654",
+        "name": "Conjunto de Panelas",
+        "group": "Móveis, Cama e Banho"
+    },
+    "664": {
+        "code": "664",
+        "name": "Escadas",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "670": {
+        "code": "670",
+        "name": "Furadeiras e Parafusadeiras",
+        "group": "Ferramentas Elétricas"
+    },
+    "673": {
+        "code": "673",
+        "name": "Plainas Elétricas",
+        "group": "Ferramentas Elétricas"
+    },
+    "68": {
+        "code": "68",
+        "name": "Freezer",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "681": {
+        "code": "681",
+        "name": "Scanners",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "682": {
+        "code": "682",
+        "name": "HD Externo",
+        "group": "Periféricos e Acessórios de Informática"
+    },
+    "693": {
+        "code": "693",
+        "name": "Aparadores de Grama",
+        "group": "Jardim e Área Externa"
+    },
+    "694": {
+        "code": "694",
+        "name": "Roçadeiras",
+        "group": "Jardim e Área Externa"
+    },
+    "697": {
+        "code": "697",
+        "name": "Motosserra",
+        "group": "Jardim e Área Externa"
+    },
+    "7": {
+        "code": "7",
+        "name": "Micro-ondas",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "70": {
+        "code": "70",
+        "name": "Home Theater",
+        "group": "Áudio e Vídeo"
+    },
+    "71": {
+        "code": "71",
+        "name": "Liquidificador",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "753": {
+        "code": "753",
+        "name": "Roupões",
+        "group": "Móveis, Cama e Banho"
+    },
+    "77": {
+        "code": "77",
+        "name": "Aspirador de Pó",
+        "group": "Eletroportáteis"
+    },
+    "79": {
+        "code": "79",
+        "name": "Estabilizador e NoBreak",
+        "group": "Periféricos e Acessórios de Informática"
+    },
+    "8": {
+        "code": "8",
+        "name": "Coifas",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "820": {
+        "code": "820",
+        "name": "Cortadores de Grama",
+        "group": "Jardim e Área Externa"
+    },
+    "834": {
+        "code": "834",
+        "name": "Máquina Para Waffle",
+        "group": "Eletroportáteis"
+    },
+    "835": {
+        "code": "835",
+        "name": "Vaporizador e Higienizadores",
+        "group": "Climatização, Limpeza e Tratamento de Ar"
+    },
+    "841": {
+        "code": "841",
+        "name": "Arandelas",
+        "group": "Segurança e Automação Residencial"
+    },
+    "85": {
+        "code": "85",
+        "name": "Climatizador de Ar",
+        "group": "Climatização, Limpeza e Tratamento de Ar"
+    },
+    "850": {
+        "code": "850",
+        "name": "Interfone e Porteiro Eletrônico",
+        "group": "Segurança e Automação Residencial"
+    },
+    "854": {
+        "code": "854",
+        "name": "Exaustor",
+        "group": "Climatização, Limpeza e Tratamento de Ar"
+    },
+    "855": {
+        "code": "855",
+        "name": "Filtros de Piscina",
+        "group": "Jardim e Área Externa"
+    },
+    "86": {
+        "code": "86",
+        "name": "Ventilador",
+        "group": "Climatização, Limpeza e Tratamento de Ar"
+    },
+    "861": {
+        "code": "861",
+        "name": "Jogos de Ferramentas",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "863": {
+        "code": "863",
+        "name": "Aquecedor de Água",
+        "group": "Eletroportáteis para Bebidas Quentes e Água"
+    },
+    "866": {
+        "code": "866",
+        "name": "Duchas",
+        "group": "Eletroportáteis para Bebidas Quentes e Água"
+    },
+    "88": {
+        "code": "88",
+        "name": "Lavadora de Alta Pressão Elétrica",
+        "group": "Ferramentas de Bancada e Máquinas Diversas"
+    },
+    "89": {
+        "code": "89",
+        "name": "Adega",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "9": {
+        "code": "9",
+        "name": "Cortina de Ar",
+        "group": "Climatização, Limpeza e Tratamento de Ar"
+    },
+    "90": {
+        "code": "90",
+        "name": "Batedeira",
+        "group": "Eletroportáteis"
+    },
+    "91": {
+        "code": "91",
+        "name": "Bebedouro",
+        "group": "Eletroportáteis para Bebidas Quentes e Água"
+    },
+    "919": {
+        "code": "919",
+        "name": "Microfone",
+        "group": "Áudio e Vídeo"
+    },
+    "92": {
+        "code": "92",
+        "name": "Cafeteira",
+        "group": "Eletroportáteis para Bebidas Quentes e Água"
+    },
+    "925": {
+        "code": "925",
+        "name": "Tratamento de Cabelo",
+        "group": "Cosméticos para Cabelo"
+    },
+    "93": {
+        "code": "93",
+        "name": "Processador de Alimentos",
+        "group": "Eletroportáteis"
+    },
+    "94": {
+        "code": "94",
+        "name": "Forno",
+        "group": "Eletrodomésticos (Linha Branca e Comercial)"
+    },
+    "943": {
+        "code": "943",
+        "name": "Omeleteira Elétrica",
+        "group": "Eletroportáteis"
+    },
+    "949": {
+        "code": "949",
+        "name": "SSD",
+        "group": "Informática (Computadores e Dispositivos)"
+    },
+    "996": {
+        "code": "996",
+        "name": "Estiletes",
+        "group": "Ferramentas Manuais e Organização"
+    },
+    "__placeholder_for_suplementos_e_saúde__": {
+        "code": "__placeholder_for_Suplementos_e_Saúde__",
+        "name": "Suplementos e Saúde",
+        "group": "Suplementos e Saúde",
+        "placeholder": true
+    },
+    "__placeholder_for_utilidades_domésticas__": {
+        "code": "__placeholder_for_Utilidades_Domésticas__",
+        "name": "Utilidades Domésticas",
+        "group": "Utilidades Domésticas",
+        "placeholder": true
+    },
+    "abridor de vinho": {
+        "code": "abridor de vinho",
+        "name": "abridor de vinho",
+        "group": "Vinhos e Espumantes"
+    },
+    "acessórios para ferramentas elétricas": {
+        "code": "acessórios para ferramentas elétricas",
+        "name": "acessórios para ferramentas elétricas",
+        "group": "Acessórios para Ferramentas Elétricas"
+    },
+    "aparelho de som - eua": {
+        "code": "aparelho de som - eua",
+        "name": "aparelho de som - eua",
+        "group": "Áudio e Vídeo"
+    },
+    "aparelho de som - panamá": {
+        "code": "aparelho de som - panamá",
+        "name": "aparelho de som - panamá",
+        "group": "Áudio e Vídeo"
+    },
+    "caixas acústicas e amplificadas - eua": {
+        "code": "caixas acústicas e amplificadas - eua",
+        "name": "caixas acústicas e amplificadas - eua",
+        "group": "Áudio e Vídeo"
+    },
+    "caixas acústicas e amplificadas - panamá": {
+        "code": "caixas acústicas e amplificadas - panamá",
+        "name": "caixas acústicas e amplificadas - panamá",
+        "group": "Áudio e Vídeo"
+    },
+    "caixas de som para celulares e smartphones - eua": {
+        "code": "caixas de som para celulares e smartphones - eua",
+        "name": "caixas de som para celulares e smartphones - eua",
+        "group": "Áudio e Vídeo"
+    },
+    "caixas de som para celulares e smartphones - panamá": {
+        "code": "caixas de som para celulares e smartphones - panamá",
+        "name": "caixas de som para celulares e smartphones - panamá",
+        "group": "Áudio e Vídeo"
+    },
+    "detector de materiais": {
+        "code": "detector de materiais",
+        "name": "detector de materiais",
+        "group": "Segurança e Automação Residencial"
+    },
+    "detector de materiales - méxico": {
+        "code": "detector de materiales - méxico",
+        "name": "detector de materiales - méxico",
+        "group": "Segurança e Automação Residencial"
+    },
+    "filtros de água": {
+        "code": "filtros de água",
+        "name": "filtros de água",
+        "group": "Eletroportáteis para Bebidas Quentes e Água"
+    },
+    "forno elétrico": {
+        "code": "forno elétrico",
+        "name": "forno elétrico",
+        "group": "Eletroportáteis"
+    },
+    "gaseosa - chile": {
+        "code": "gaseosa - chile",
+        "name": "gaseosa - chile",
+        "group": "Alimentos e Snacks"
+    },
+    "motor para portão": {
+        "code": "motor para portão",
+        "name": "motor para portão",
+        "group": "Segurança e Automação Residencial"
+    },
+    "primer - chile": {
+        "code": "primer - chile",
+        "name": "primer - chile",
+        "group": "Maquiagem"
+    },
+    "sorveteiras": {
+        "code": "sorveteiras",
+        "name": "sorveteiras",
+        "group": "Eletroportáteis"
+    },
+    "vinho - argentina": {
+        "code": "vinho - argentina",
+        "name": "vinho - argentina",
+        "group": "Vinhos e Espumantes"
+    },
+    "vinho - chile": {
+        "code": "vinho - chile",
+        "name": "vinho - chile",
+        "group": "Vinhos e Espumantes"
+    }
+}

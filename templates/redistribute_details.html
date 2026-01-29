@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% block title %}Detalhes da Redistribuição{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h3>Detalhes da Redistribuição</h3>
+  <a href="{{ url_for('suggest_general_redistribution_page') }}" class="btn btn-pesquisar">
+    <i class="bi bi-arrow-left-circle"></i> Voltar
+  </a>
+</div>
+
+<!-- Gini com legenda -->
+<div class="card shadow-sm mb-4">
+  <div class="card-header">Índice de Gini — Equidade de Carga</div>
+  <div class="card-body">
+    <p class="mb-2">
+      <small class="text-muted">
+        <strong>O que é:</strong> mede a desigualdade da distribuição de PI entre analistas.
+        <strong>0</strong> = todos com cargas iguais; <strong>1</strong> = concentração extrema.
+      </small>
+    </p>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="border rounded p-3 h-100">
+          <div class="d-flex justify-content-between">
+            <span>Gini (Antes)</span>
+            <strong>{{ results.gini_antes }}</strong>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="border rounded p-3 h-100">
+          <div class="d-flex justify-content-between">
+            <span>Gini (Depois)</span>
+            <strong class="text-success">{{ results.gini_depois }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Top 5 Aproveitamento de Especialidades -->
+<div class="card shadow-sm mb-4">
+  <div class="card-header">Top 5 – Aproveitamento de Especialidades</div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-sm table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>Analista</th>
+            <th class="text-center">% de match</th>
+            <th class="text-center">Casos no grupo</th>
+            <th class="text-center">Total recebido</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in details.top_especialidade %}
+          <tr>
+            <td>{{ r.analista }}</td>
+            <td class="text-center"><strong>{{ r.match_pct }}%</strong></td>
+            <td class="text-center">{{ r.match }}</td>
+            <td class="text-center">{{ r.total }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="4" class="text-center text-muted">Sem dados suficientes.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Saúde por Grupo -->
+<div class="card shadow-sm mb-4">
+  <div class="card-header">Saúde por Grupo</div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-sm table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>Grupo</th>
+            <th class="text-center">Total PI do Grupo</th>
+            <th class="text-center">Nº Analistas</th>
+            <th>Quem mais recebeu PI</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for g in details.saude_grupos %}
+          <tr>
+            <td><span class="badge bg-light text-dark">{{ g.grupo }}</span></td>
+            <td class="text-center">{{ g.total_pi }}</td>
+            <td class="text-center">{{ g.num_analistas }}</td>
+            <td>{{ g.top_analista }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="4" class="text-center text-muted">Sem dados suficientes.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Histórico de Carga (barras pareadas) -->
+<div class="card shadow-sm">
+  <div class="card-header">Histórico de Carga — Antes x Depois</div>
+  <div class="card-body">
+    <p class="text-muted small mb-3">
+      Cada linha mostra a carga (PI) por analista antes e depois da redistribuição, na mesma escala (máximo = {{ details.max_total }}).
+    </p>
+    <div class="list-group">
+      {% for h in details.historico %}
+      <div class="list-group-item">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <strong>{{ h.analista }}</strong>
+          <small class="text-muted">Atual: {{ h.pi_atual }} • Sugerida: {{ h.pi_sugerido }}</small>
+        </div>
+
+        <div class="mb-2">
+          <div class="progress" style="height: 8px;">
+            <div class="progress-bar" role="progressbar"
+                 data-pct="{{ h.pct_atual }}"
+                 aria-valuenow="{{ h.pi_atual }}" aria-valuemin="0" aria-valuemax="{{ details.max_total }}"></div>
+          </div>
+          <small class="text-muted">Atual</small>
+        </div>
+
+        <div>
+          <div class="progress" style="height: 8px;">
+            <div class="progress-bar bg-success" role="progressbar"
+                 data-pct="{{ h.pct_sugerido }}"
+                 aria-valuenow="{{ h.pi_sugerido }}" aria-valuemin="0" aria-valuemax="{{ details.max_total }}"></div>
+          </div>
+          <small class="text-muted">Sugerida</small>
+        </div>
+      </div>
+      {% else %}
+      <div class="list-group-item text-center text-muted">Sem dados para exibir.</div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.progress-bar[data-pct]').forEach(function (el) {
+    var pct = parseFloat(el.getAttribute('data-pct')) || 0;
+    el.style.width = pct + '%';
+  });
+</script>
+{% endblock %}

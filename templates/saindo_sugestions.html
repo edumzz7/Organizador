@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Sugestões para {{ analyst_name }}{% endblock %}
+{% block content %}
+<h3>Sugestões de Redistribuição para Categorias de: <span class="text-danger">{{ analyst_name }}</span></h3>
+{% if suggestions.error %}
+    <div class="alert alert-warning">{{ suggestions.error }}</div>
+{% elif suggestions and not suggestions.info %}
+    <div class="accordion" id="suggestionsAccordion">
+        {% for cat_id, details in suggestions.items() %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading-{{ cat_id }}">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ cat_id }}" aria-expanded="false" aria-controls="collapse-{{ cat_id }}">
+                    <strong>{{ details.category_name }}</strong>&nbsp;<span class="ms-2 badge bg-secondary">PI: {{ details.category_pi | int }}</span>
+                </button>
+            </h2>
+            <div id="collapse-{{ cat_id }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ cat_id }}" data-bs-parent="#suggestionsAccordion">
+                <div class="accordion-body">
+                    <h6 class="mb-3">Top 4 Sugestões de Analistas para Receber:</h6>
+                    {% if details.suggested_analysts %}
+                        <ul class="list-group">
+                            {% for suggestion in details.suggested_analysts %}
+                            <li class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between align-items-center">
+                                    <span><strong>{{ suggestion.name }}</strong></span>
+                                    <small class="text-muted">PI Atual: {{ suggestion.current_pi | int }}</small>
+                                </div>
+                                {% if suggestion.similarity_count > 0 %}
+                                <div class="mt-2" style="font-size: 0.85em;">
+                                    <strong class="text-success">Motivo:</strong><span> Possui {{ suggestion.similarity_count }} categoria(s) do mesmo grupo.</span>
+                                </div>
+                                {% else %}
+                                <div class="mt-2 text-muted" style="font-size: 0.85em;">
+                                    <strong>Motivo:</strong><span> Nenhuma categoria do mesmo grupo (sugestão por menor PI).</span>
+                                </div>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="text-muted">Nenhuma sugestão disponível para esta categoria.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+<p class="alert alert-info">{{ suggestions.info or 'Nenhuma categoria encontrada para este analista ou nenhum analista disponível para receber.'}}</p>
+{% endif %}
+<p class="mt-4"><a href="{{ url_for('analyst_options_page', analyst_name=analyst_name) }}" class="btn btn-secondary">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/></svg>
+    Voltar</a></p>
+{% endblock %}

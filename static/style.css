@@ -1,0 +1,390 @@
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+.flash-messages .alert {
+    margin-top: 1rem;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+.card {
+    border: none;
+}
+
+.header-nav .nav-link {
+    font-size: 1rem;
+    /* Ajustado para um tamanho mais padrão e uniforme */
+    font-weight: 500;
+    padding: .5rem .9rem;
+    border-radius: 0.75rem;
+    transition: background .15s ease, color .15s ease;
+    white-space: nowrap;
+}
+
+.header-nav .nav-link.active {
+    color: #FFC107;
+    background-color: #073983;
+}
+
+.header-nav .nav-link:not(.active) {
+    color: #073983;
+}
+
+.header-nav .nav-link:not(.active):hover {
+    background: #f2f6ff;
+    color: #073983;
+}
+
+.texticon {
+    color: #073983;
+}
+
+.table tbody a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.table tbody a:hover {
+    text-decoration: underline;
+}
+
+/* --- SEUS ESTILOS PERSONALIZADOS (MANTIDOS) --- */
+.availability-icon {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.availability-icon:hover {
+    transform: scale(1.2);
+}
+
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1050;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s, visibility 0.4s, bottom 0.4s;
+}
+
+.toast-notification.show {
+    opacity: 1;
+    visibility: visible;
+    bottom: 40px;
+}
+
+.btn-options-custom {
+    background-color: #073983;
+    color: #ffffff;
+    border: 1px solid #2d39bd;
+}
+
+.btn-options-custom:hover,
+.btn-options-custom:focus {
+    background-color: #174fa1;
+    color: #FFD54F;
+    border: 1px solid #283593;
+}
+
+.textdanger {
+    color: #ff7c01;
+}
+
+.btnnovoarquivo {
+    background-color: #ffffff;
+    color: #073983;
+    border: 1px solid #2d39bd;
+}
+
+.btnnovoarquivo:hover {
+    background-color: #FFC107;
+    color: #052a61;
+    border-color: #073983;
+}
+
+.btnordenarnome {
+    background-color: #073983;
+    color: #ffffff;
+    border: 1px solid #2d39bd;
+}
+
+.btnordenarnome:hover {
+    background-color: #042961;
+    color: #c79706;
+    border-color: #073983;
+}
+
+.btnordenarpi {
+    background-color: #073983;
+    color: #ffffff;
+    border: 1px solid #2d39bd;
+}
+
+.btnordenarpi:hover {
+    background-color: #042961;
+    color: #c79706;
+    border-color: #073983;
+}
+
+@media (max-width: 991.98px) {
+    .main-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .edit-groups-sidebar .sticky-top {
+        position: static;
+        top: auto;
+    }
+
+    .edit-groups-sidebar {
+        margin-bottom: 2rem;
+    }
+
+    .analyst-details-p {
+        font-size: 0.9rem;
+    }
+
+    .analyst-details-p small {
+        display: block;
+        line-height: 1.5;
+    }
+}
+
+.bgnovogrupo {
+    background-color: #0b51b9;
+    color: #ffffff;
+    border: 1px solid #4750aa;
+}
+
+.btnnovogrupo {
+    background-color: #0b51b9;
+    color: #ffffff;
+    border: 1px solid #4750aa;
+}
+
+.btnnovogrupo:hover {
+    background-color: #ffffff;
+    color: #0b51b9;
+    border-color: #073983;
+}
+
+.bgdanger {
+    background-color: #BD0C06;
+    color: #ffffff;
+    border: 1px solid #ff0800;
+}
+
+.btndanger {
+    background-color: #BD0C06;
+    color: #ffffff;
+    border: 1px solid #ff0800;
+}
+
+.btndanger:hover {
+    background-color: #ffffff;
+    color: #BD0C06;
+    border-color: #ff0800;
+}
+
+.bgrenomear {
+    background-color: #ecd717;
+    color: #ffffff;
+    border: 1px solid #b8ad16;
+}
+
+.btnrenomear {
+    background-color: #ecd717;
+    color: #ffffff;
+    border: 1px solid #b8ad16;
+}
+
+.btnrenomear:hover {
+    background-color: #ffffff;
+    color: #ecd717;
+    border-color: #b8ad16;
+}
+
+.btn-pesquisar {
+    background-color: #073983;
+    color: #ffffff;
+    border: 1px solid #2d39bd;
+}
+
+.btn-pesquisar:hover {
+    background-color: #174fa1;
+    color: #ffffff;
+    border: 1px solid #283593;
+}
+
+.btn-sugestaogeral {
+    background-color: #073983;
+    color: #ffffff;
+    border: 1px solid #2d39bd;
+}
+
+.btn-sugestaogeral:hover {
+    background-color: #042961;
+    color: #c79706;
+    border: 1px solid #283593;
+}
+
+.bgsitsug {
+    background-color: #073983;
+    color: #ffffff;
+    border: 1px solid #121750;
+}
+
+.bgsitatual {
+    background-color: #075F82;
+    color: #ffffff;
+    border: 1px solid #07827E;
+}
+
+.text-suggested {
+    color: #0b51b9;
+    font-weight: bold;
+}
+
+/* Checkboxes do filtro */
+.analista-filtro .form-check-input {
+    background-color: #fff;
+    border-color: #073983;
+}
+
+.analista-filtro .form-check-input:checked {
+    background-color: #073983;
+    border-color: #073983;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%23ecd717' d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l1.477 1.477 3.908-3.83z'/%3e%3c/svg%3e");
+}
+
+.btnsave {
+    background-color: #073983;
+    color: #ffffff;
+    border: 1px solid #2d39bd;
+}
+
+.btnsave:hover {
+    background-color: #042961;
+    color: #c79706;
+    border: 1px solid #283593;
+}
+
+/* Header moderno */
+.main-header {
+    backdrop-filter: saturate(140%) blur(2px);
+}
+
+/* Botão exportar (.xlsx) */
+.btn-exportar {
+    background-color: #198754;
+    color: #fff;
+    border: 1px solid #146c43;
+}
+
+.btn-exportar:hover {
+    background-color: #157347;
+    color: #fff;
+    border-color: #0f5132;
+}
+
+/* Alert custom */
+.alertwarning {
+    background-color: #eeeed163;
+    color: #856404;
+    border-color: #ffeeba;
+}
+
+/* --- NOVO: comparações --- */
+.arrow-up {
+    color: #dc3545;
+    font-weight: 700;
+}
+
+/* vermelho */
+.arrow-down {
+    color: #198754;
+    font-weight: 700;
+}
+
+/* verde */
+
+/* Setas da comparação */
+.arrow-up {
+    color: #dc3545;
+    font-weight: 700;
+}
+
+/* vermelho */
+.arrow-down {
+    color: #198754;
+    font-weight: 700;
+}
+
+/* verde */
+
+.btn-detalhes {
+    background-color: #ffffff;
+    color: #073983;
+    border: 1px solid #2d39bd;
+}
+
+.btn-detalhes:hover {
+    background-color: #827607;
+    color: #ffffff;
+}
+
+/* Opções Analista - Moderno */
+.btn-opt-danger {
+    background-color: #fff;
+    color: #BD0C06;
+    border: 2px solid #BD0C06;
+    transition: all 0.2s;
+}
+
+.btn-opt-danger:hover {
+    background-color: #BD0C06;
+    color: #fff;
+}
+
+.btn-opt-warning {
+    background-color: #fff;
+    color: #b8ad16;
+    /* Darker yellow for text visibility */
+    border: 2px solid #ecd717;
+    transition: all 0.2s;
+}
+
+.btn-opt-warning:hover {
+    background-color: #ecd717;
+    color: #fff;
+}
+
+.btn-opt-success {
+    background-color: #fff;
+    color: #198754;
+    border: 2px solid #198754;
+    transition: all 0.2s;
+}
+
+.btn-opt-success:hover {
+    background-color: #198754;
+    color: #fff;
+}

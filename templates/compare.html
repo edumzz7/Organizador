@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+{% block title %}Comparar Snapshots{% endblock %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Comparar Snapshots</h3>
+  <small class="text-muted">Envie a 1ª (mais antiga), 2ª e opcionalmente a 3ª (mais recente).</small>
+</div>
+
+<form method="post" enctype="multipart/form-data" class="mb-4" id="compareForm">
+  <div class="row g-2">
+    <div class="col-md-4">
+      <label class="form-label">1ª Exportação (mais antiga)</label>
+      <input class="form-control" type="file" name="file1" accept=".html">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">2ª Exportação</label>
+      <input class="form-control" type="file" name="file2" accept=".html">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">3ª Exportação (mais recente) — opcional</label>
+      <input class="form-control" type="file" name="file3" accept=".html">
+    </div>
+  </div>
+  <div class="mt-3">
+    <button class="btn btn-sugestaogeral" id="btnCompare" type="submit" disabled>
+      <i class="bi bi-bar-chart-line"></i> Comparar
+    </button>
+  </div>
+</form>
+
+{% if report %}
+  <div class="alert alertwarning">
+    <strong>Legenda:</strong> PI da 2ª fica <span class="text-success">verde</span> se caiu vs 1ª (senão <span class="text-danger">vermelho</span>).
+    PI da 3ª fica <span class="text-success">verde</span> se caiu vs 2ª (senão <span class="text-danger">vermelho</span>).
+    Seta compara 1ª × 3ª (↑ vermelho ≥ 50% de aumento; ↓ verde ≤ 50% da carga inicial).
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-sm align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>Analista</th>
+          <th>Métrica</th>
+          <th class="text-center">1ª</th>
+          <th class="text-center">2ª</th>
+          {% if report.labels|length == 3 %}
+            <th class="text-center">3ª</th>
+            <th class="text-center">1×3</th>
+          {% endif %}
+        </tr>
+      </thead>
+      {% for r in report.rows %}
+      <tbody class="hover-group">
+          {# ---- Linha 1: PI Total ---- #}
+          <tr>
+            <td rowspan="3" class="fw-semibold">{{ r.analista }}</td>
+            <td class="text-muted">PI Total</td>
+
+            {# 1ª #}
+            <td class="text-center">{{ r.pi[0] }}</td>
+
+            {# 2ª (cor: verde se caiu vs 1ª, senão vermelho) #}
+            {% set c2 = 'text-success' if r.pi|length > 1 and r.pi[1] < r.pi[0] else 'text-danger' %}
+            <td class="text-center {{ c2 }}">{{ r.pi[1] if r.pi|length > 1 else '—' }}</td>
+
+            {% if report.labels|length == 3 %}
+              {# 3ª (cor: verde se caiu vs 2ª, senão vermelho) #}
+              {% set c3 = 'text-success' if r.pi[2] < r.pi[1] else 'text-danger' %}
+              <td class="text-center {{ c3 }}">{{ r.pi[2] }}</td>
+
+              {# seta 1ª x 3ª #}
+              {% set pi1 = r.pi[0] %}
+              {% set pi3 = r.pi[2] %}
+              {% if pi1 == 0 and pi3 > 0 %}
+                <td class="text-center arrow-up text-nowrap">↑</td>
+              {% elif pi1 > 0 and pi3 >= (pi1 * 1.5) %}
+                <td class="text-center arrow-up text-nowrap">↑</td>
+              {% elif pi1 > 0 and pi3 <= (pi1 * 0.5) %}
+                <td class="text-center arrow-down text-nowrap">↓</td>
+              {% else %}
+                <td class="text-center text-muted text-nowrap">—</td>
+              {% endif %}
+            {% endif %}
+          </tr>
+
+          {# ---- Linha 2: Nº Categorias ---- #}
+          <tr>
+            <td class="text-muted">Categorias</td>
+            <td class="text-center">{{ r.cnt[0] }}</td>
+            <td class="text-center">{{ r.cnt[1] if r.cnt|length > 1 else '—' }}</td>
+            {% if report.labels|length == 3 %}
+              <td class="text-center">{{ r.cnt[2] }}</td>
+              <td class="border-fix"></td>
+            {% endif %}
+          </tr>
+
+          {# ---- Linha 3: Grupo Predominante ---- #}
+          <tr>
+            <td class="text-muted">Grupo Predominante</td>
+            <td class="text-center"><small>{{ r.grp[0] }}</small></td>
+            <td class="text-center"><small>{{ r.grp[1] if r.grp|length > 1 else '—' }}</small></td>
+            {% if report.labels|length == 3 %}
+              <td class="text-center"><small>{{ r.grp[2] }}</small></td>
+              <td class="border-fix"></td>
+            {% endif %}
+          </tr>
+      </tbody>
+      {% endfor %}
+    </table>
+  </div>
+{% endif %}
+
+    <style>
+        .hover-group {
+            transition: background-color 0.2s ease;
+            border-bottom: 2px solid #dee2e6; /* Separator between analysts */
+        }
+        /* Darker border above the analyst group */
+        .hover-group:first-child {
+             border-top: 2px solid #dee2e6;
+        }
+        
+        .hover-group:hover {
+            background-color: rgba(0, 0, 0, 0.075); 
+        }
+        
+        /* Darker internal borders on hover */
+        .hover-group:hover td, .hover-group:hover th {
+            border-color: #999; /* Slightly darker to be more visible */
+            border-top: 1px solid #999;
+            border-bottom: 1px solid #999;
+        }
+        
+        /* Ensure the thick separator remains visible even on hover */
+        .hover-group:hover {
+            border-bottom: 2px solid #999; 
+        }
+
+        /* Fix for alignment of last column */
+        .last-col-width {
+            min-width: 120px; /* Adjust width as needed to prevent wrapping */
+        }
+        
+        /* Fix alignment for cells with rowspan */
+        td[rowspan] {
+            vertical-align: middle;
+        }
+    </style>
+
+    {% if report_data %}
+    <div class="table-responsive mt-4">
+        <table class="table table-bordered text-center align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th rowspan="2">Analista</th>
+                    <th rowspan="2">Métrica</th>
+                    {% for fname in filenames %}
+                    <th>{{ fname }}</th>
+                    {% endfor %}
+                    <!-- Fill remaining header columns if < 3 files -->
+                    {% for _ in range(3 - filenames|length) %}
+                    <th>-</th>
+                    {% endfor %}
+                    
+                    {% if filenames|length >= 2 %}
+                    <th class="text-nowrap last-col-width">1ª &times; {{ filenames|length }}ª</th>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <!-- Sub-header row for 1st, 2nd, 3rd file labels -->
+                    {% for i in range(filenames|length) %}
+                    <th class="small text-muted">{{ i+1 }}ª</th>
+                    {% endfor %}
+                    {% for _ in range(3 - filenames|length) %}
+                    <th></th>
+                    {% endfor %}
+                    
+                    {% if filenames|length >= 2 %}
+                    <th>Diff</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            
+            <!-- Each analyst is a tbody to group rows for hover effect -->
+            {% for row in report_data %}
+            <tbody class="hover-group">
+                <!-- Row 1: PI Total -->
+                <tr>
+                    <td rowspan="3" class="fw-bold">{{ row.analyst }}</td>
+                    <td class="fw-semibold text-start ps-3">PI Total</td>
+                    
+                    {% for val in row.pi_values %}
+                    <td>{{ val }}</td>
+                    {% endfor %}
+                    {% for _ in range(3 - row.pi_values|length) %}
+                    <td class="text-muted">-</td>
+                    {% endfor %}
+
+                    {% if filenames|length >= 2 %}
+                    <td class="last-col-width {{ 'text-success' if row.diff_pi < 0 else 'text-danger' if row.diff_pi > 0 else '' }}">
+                        {{ row.diff_pi }}
+                    </td>
+                    {% endif %}
+                </tr>
+
+                <!-- Row 2: Qtd Categorias -->
+                <tr>
+                    <td class="fw-semibold text-start ps-3">Categorias</td>
+                    
+                    {% for val in row.cat_counts %}
+                    <td>{{ val }}</td>
+                    {% endfor %}
+                    {% for _ in range(3 - row.cat_counts|length) %}
+                    <td class="text-muted">-</td>
+                    {% endfor %}
+
+                    {% if filenames|length >= 2 %}
+                    <td class="last-col-width {{ 'text-success' if row.diff_cats < 0 else 'text-danger' if row.diff_cats > 0 else '' }}">
+                        {{ row.diff_cats }}
+                    </td>
+                    {% endif %}
+                </tr>
+
+                <!-- Row 3: Grupo Predominante -->
+                <tr>
+                    <td class="fw-semibold text-start ps-3">Grupo Predom.</td>
+                    
+                    {% for val in row.predominant_groups %}
+                    <td class="small">{{ val }}</td>
+                    {% endfor %}
+                    {% for _ in range(3 - row.predominant_groups|length) %}
+                    <td class="text-muted">-</td>
+                    {% endfor %}
+                    
+                    <!-- Empty cell for diff column in this row -->
+                    {% if filenames|length >= 2 %}
+                    <td class="last-col-width"></td> 
+                    {% endif %}
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+  (function () {
+    const inputs = Array.from(document.querySelectorAll('input[type="file"][name^="file"]'));
+    const btn = document.getElementById('btnCompare');
+    const check = () => {
+      const filled = inputs.filter(i => i.files && i.files.length > 0).length;
+      btn.disabled = filled < 2;
+    };
+    inputs.forEach(i => i.addEventListener('change', check));
+    check();
+  })();
+</script>
+
+{% endblock %}
+
+
+

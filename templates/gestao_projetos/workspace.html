@@ -1,0 +1,425 @@
+{% extends "base.html" %}
+
+{% block title %}Workspace: {{ project.cliente_nome }}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('gestao_projetos.static', filename='style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="mb-4 d-flex justify-content-between align-items-center">
+    <div>
+        <a href="{{ url_for('gestao_projetos.dashboard') }}" class="text-decoration-none small">
+            <i class="bi bi-arrow-left"></i> Voltar para Lista
+        </a>
+        <h2 class="h3 mb-0 mt-1" id="projectName">{{ project.cliente_nome }}</h2>
+    </div>
+    <div class="d-flex gap-2 align-items-center">
+        <span class="save-indicator ms-3" id="saveIndicator">
+            <i class="bi bi-cloud-check-fill"></i> Salvo automaticamente
+        </span>
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                {{ project.status }}
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" onclick="updateStatus('Ativo');">Ativo</a></li>
+                <li><a class="dropdown-item" href="#" onclick="updateStatus('Pausado');">Pausado</a></li>
+                <li><a class="dropdown-item" href="#" onclick="updateStatus('Concluído');">Concluído</a></li>
+            </ul>
+        </div>
+        <a href="{{ url_for('gestao_projetos.export_project', project_id=project.id) }}"
+            class="btn btn-sm btn-outline-success">
+            <i class="bi bi-download"></i> Exportar
+        </a>
+        <form action="{{ url_for('gestao_projetos.delete_project_route', project_id=project.id) }}" method="POST"
+            class="d-inline" onsubmit="return confirm('Excluir este projeto permanentemente?');">
+            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+        </form>
+    </div>
+</div>
+
+<div class="workspace-container">
+    <!-- Coluna Esquerda: Recursos (Pastas) -->
+    <div class="workspace-col col-resources">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0"><i class="bi bi-folder2-open"></i> Recursos</h5>
+            <button class="btn btn-sm btn-outline-primary" onclick="addFolder()">
+                <i class="bi bi-folder-plus"></i>
+            </button>
+        </div>
+
+        <div id="resourceContainer" class="folder-list">
+            <!-- As pastas e links serão renderizados aqui via JS -->
+        </div>
+    </div>
+
+    <!-- Coluna Central: Escopo (Chips) -->
+    <div class="workspace-col col-scope">
+        <h5 class="mb-3"><i class="bi bi-bullseye"></i> Escopo de Trabalho</h5>
+
+
+
+        <div class="mb-4">
+            <label class="form-label small text-muted text-uppercase">Marcas</label>
+            <div class="chip-container" id="marcasChips"></div>
+            <input type="text" class="form-control form-control-sm" placeholder="Adicionar marca (Enter)"
+                onkeydown="handleChipInput(event, 'marcas');">
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label small text-muted text-uppercase">Categorias</label>
+            <div class="chip-container" id="categoriasChips"></div>
+            <input type="text" class="form-control form-control-sm" placeholder="Adicionar categoria (Enter)"
+                onkeydown="handleChipInput(event, 'categorias');">
+        </div>
+    </div>
+
+    <!-- Coluna Direita: Notas -->
+    <div class="workspace-col col-notes">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0"><i class="bi bi-sticky"></i> Anotações</h5>
+            <div class="notes-toolbar">
+                <button class="btn btn-sm btn-light" onclick="formatDoc('bold')" title="Negrito"><i
+                        class="bi bi-type-bold"></i></button>
+                <button class="btn btn-sm btn-light" onclick="formatDoc('italic')" title="Itálico"><i
+                        class="bi bi-type-italic"></i></button>
+            </div>
+        </div>
+        <div class="notes-area" id="notesArea" contenteditable="true"
+            placeholder="Digite aqui observações rápidas, fluxos ou rascunhos..." onblur="saveState();"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<script id="project-data" type="application/json">
+        {{ project | tojson | safe }}
+    </script>
+<script>
+    // Carrega o estado inicial do projeto
+    const projectData = document.getElementById('project-data').textContent;
+    let project = JSON.parse(projectData);
+    let currentData = project.dados;
+    let currentStatus = project.status;
+
+    // Inicialização da UI
+    document.addEventListener('DOMContentLoaded', () => {
+        migrateData();
+        renderAll();
+        // Auto-save ao digitar com debounce
+        let timeout = null;
+        document.getElementById('notesArea').addEventListener('input', () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(saveState, 2000);
+        });
+    });
+
+    function migrateData() {
+        // Se ainda estiver no formato antigo (recursos.tickets/recursos.planilhas são arrays)
+        if (Array.isArray(currentData.recursos.tickets)) {
+            const geralItems = [];
+            currentData.recursos.tickets.forEach(t => geralItems.push({ ...t, type: 'ticket' }));
+            currentData.recursos.planilhas.forEach(p => geralItems.push({ ...p, type: 'planilha' }));
+
+            currentData.recursos = {
+                pastas: [
+                    {
+                        id: 'folder-' + Date.now(),
+                        nome: 'Geral',
+                        items: geralItems,
+                        collapsed: false
+                    }
+                ]
+            };
+            saveState();
+        }
+    }
+
+    function renderAll() {
+        renderResources();
+        renderChips('marcas', 'marcasChips');
+        renderChips('categorias', 'categoriasChips');
+        document.getElementById('notesArea').innerHTML = currentData.notas_adesivas || '';
+    }
+
+    function renderResources() {
+        const container = document.getElementById('resourceContainer');
+        if (!container) return;
+        container.innerHTML = '';
+
+        const pastas = currentData.recursos.pastas || [];
+
+        pastas.forEach((folder, folderIdx) => {
+            const folderDiv = document.createElement('div');
+            folderDiv.className = `folder-item mb-2 ${folder.collapsed ? 'collapsed' : ''}`;
+            folderDiv.dataset.id = folder.id;
+
+            folderDiv.innerHTML = `
+                <div class="folder-header d-flex align-items-center justify-content-between p-2 rounded">
+                    <div class="d-flex align-items-center gap-2 flex-grow-1" style="cursor: pointer;">
+                        <i class="bi bi-grip-vertical text-muted drag-handle-folder" style="cursor: grab;"></i>
+                        <span onclick="toggleFolder(${folderIdx})">
+                            <i class="bi ${folder.collapsed ? 'bi-chevron-right' : 'bi-chevron-down'}"></i>
+                            <span class="folder-title fw-bold ms-1 text-uppercase small">${folder.nome}</span>
+                        </span>
+                    </div>
+                    <div class="folder-actions d-flex gap-1">
+                        <button class="btn btn-sm btn-link text-primary p-0" onclick="toggleAddForm(${folderIdx})" title="Adicionar Link"><i class="bi bi-plus-lg"></i></button>
+                        <button class="btn btn-sm btn-link text-danger p-0" onclick="removeFolder(${folderIdx})" title="Excluir Pasta"><i class="bi bi-trash"></i></button>
+                    </div>
+                </div>
+                
+                <div class="folder-content overflow-hidden">
+                    <!-- Inline Add Form -->
+                    <div class="add-link-form p-2 bg-light border-bottom" id="addForm-${folderIdx}" style="display: none;">
+                        <div class="input-group input-group-sm mb-2">
+                            <input type="text" class="form-control" id="newTitle-${folderIdx}" placeholder="Título">
+                            <input type="text" class="form-control" id="newUrl-${folderIdx}" placeholder="Link">
+                        </div>
+                        <div class="d-flex justify-content-end gap-2">
+                            <button class="btn btn-sm btn-primary" onclick="saveNewLink(${folderIdx}, 'ticket')"><i class="bi bi-ticket"></i> Ticket</button>
+                            <button class="btn btn-sm btn-success" onclick="saveNewLink(${folderIdx}, 'planilha')"><i class="bi bi-file-earmark-spreadsheet"></i> Planilha</button>
+                            <button class="btn btn-sm btn-info text-white" onclick="saveNewLink(${folderIdx}, 'link')"><i class="bi bi-link-45deg"></i> Link</button>
+                        </div>
+                    </div>
+
+                    <div class="resource-list p-1" data-folder-idx="${folderIdx}" style="min-height: 10px;">
+                        ${folder.items.map((item, itemIdx) => `
+                            <div class="resource-item p-1 border-bottom" data-item-idx="${itemIdx}">
+                                <div class="d-flex align-items-center gap-2 flex-grow-1">
+                                    <i class="bi bi-grip-vertical text-muted drag-handle-link" style="cursor: grab;"></i>
+                                    
+                                    ${item.type === 'ticket' ? `
+                                        <i class="bi bi-ticket-fill ticket-icon ${item.ok ? 'text-primary' : 'text-muted'}" 
+                                           style="cursor: pointer; font-size: 1.1em;" 
+                                           onclick="toggleTicketOk(${folderIdx}, ${itemIdx})"
+                                           title="Marcar como OK"></i>
+                                    ` : item.type === 'planilha' ? `
+                                        <i class="bi bi-file-earmark-spreadsheet text-success"></i>
+                                    ` : `
+                                        <i class="bi bi-link-45deg text-info"></i>
+                                    `}
+                                    
+                                    <a href="${item.url}" target="_blank" class="resource-link text-decoration-none text-dark">
+                                        <span class="small">${item.titulo}</span>
+                                    </a>
+                                </div>
+                                <button class="btn btn-sm btn-link text-danger p-0" onclick="removeResourceFromFolder(${folderIdx}, ${itemIdx})"><i class="bi bi-x"></i></button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            container.appendChild(folderDiv);
+        });
+
+        // Initialize Sortables (omitted for brevity, same as before)
+        initSortables(container);
+    }
+
+    function initSortables(container) {
+        // Sortable para Pastas
+        new Sortable(container, {
+            handle: '.drag-handle-folder',
+            animation: 150,
+            ghostClass: 'sortable-ghost',
+            onEnd: (evt) => {
+                const pastas = currentData.recursos.pastas;
+                const moved = pastas.splice(evt.oldIndex, 1)[0];
+                pastas.splice(evt.newIndex, 0, moved);
+                saveState();
+            }
+        });
+
+        // Sortable para Items dentro e entre pastas
+        document.querySelectorAll('.resource-list').forEach(list => {
+            new Sortable(list, {
+                group: 'links',
+                handle: '.drag-handle-link',
+                animation: 150,
+                ghostClass: 'sortable-ghost',
+                onEnd: (evt) => {
+                    const fromIdx = parseInt(evt.from.dataset.folderIdx);
+                    const toIdx = parseInt(evt.to.dataset.folderIdx);
+                    if (isNaN(fromIdx) || isNaN(toIdx)) return;
+
+                    const fromItems = currentData.recursos.pastas[fromIdx].items;
+                    const toItems = currentData.recursos.pastas[toIdx].items;
+
+                    const itemMoved = fromItems.splice(evt.oldIndex, 1)[0];
+                    toItems.splice(evt.newIndex, 0, itemMoved);
+
+                    renderResources();
+                    saveState();
+                }
+            });
+        });
+    }
+
+    function addFolder() {
+        const nome = prompt("Nome da Subdivisão (ex: Brasil, Argentina):");
+        if (nome && nome.trim()) {
+            if (!currentData.recursos.pastas) currentData.recursos.pastas = [];
+            currentData.recursos.pastas.push({
+                id: 'folder-' + Date.now(),
+                nome: nome.trim(),
+                items: [],
+                collapsed: false
+            });
+            renderResources();
+            saveState();
+        }
+    }
+
+    function removeFolder(idx) {
+        if (confirm(`Excluir a pasta "${currentData.recursos.pastas[idx].nome}" e todos os links dentro dela?`)) {
+            currentData.recursos.pastas.splice(idx, 1);
+            renderResources();
+            saveState();
+        }
+    }
+
+    function toggleFolder(idx) {
+        currentData.recursos.pastas[idx].collapsed = !currentData.recursos.pastas[idx].collapsed;
+        renderResources();
+        saveState();
+    }
+
+
+    function toggleAddForm(folderIdx) {
+        const form = document.getElementById(`addForm-${folderIdx}`);
+        if (!form) return;
+
+        if (form.style.display === 'none') {
+            form.style.display = 'block';
+            const input = document.getElementById(`newTitle-${folderIdx}`);
+            if (input) input.focus();
+        } else {
+            form.style.display = 'none';
+        }
+    }
+
+    // Fecha formulários ao clicar fora
+    document.addEventListener('click', (e) => {
+        const forms = document.querySelectorAll('.add-link-form');
+        forms.forEach((form) => {
+            if (form.style.display === 'block') {
+                const folderIdx = form.id.split('-')[1];
+                const openerButton = document.querySelector(`[onclick^="toggleAddForm(${folderIdx})"]`);
+
+                if (!form.contains(e.target) && (!openerButton || !openerButton.contains(e.target))) {
+                    form.style.display = 'none';
+                }
+            }
+        });
+    });
+
+    function saveNewLink(folderIdx, type) {
+        const titleInput = document.getElementById(`newTitle-${folderIdx}`);
+        const urlInput = document.getElementById(`newUrl-${folderIdx}`);
+        const title = titleInput.value.trim();
+        const url = urlInput.value.trim();
+
+        if (title && url) {
+            currentData.recursos.pastas[folderIdx].items.push({
+                titulo: title,
+                url: url,
+                type: type,
+                ok: false
+            });
+            // Limpa inputs mas mantém form aberto ou fechado - aqui recriamos tudo então fecha
+            renderResources();
+            saveState();
+        } else {
+            alert('Preencha título e URL');
+        }
+    }
+
+    function toggleTicketOk(folderIdx, itemIdx) {
+        const item = currentData.recursos.pastas[folderIdx].items[itemIdx];
+        if (item.type === 'ticket') {
+            item.ok = !item.ok;
+            renderResources();
+            saveState();
+        }
+    }
+
+    function removeResourceFromFolder(fIdx, iIdx) {
+        currentData.recursos.pastas[fIdx].items.splice(iIdx, 1);
+        renderResources();
+        saveState();
+    }
+
+    function renderChips(type, elementId) {
+        const container = document.getElementById(elementId);
+        container.innerHTML = '';
+        const items = currentData.escopo[type] || [];
+
+        items.forEach((item, index) => {
+            const chip = document.createElement('div');
+            chip.className = 'chip';
+            chip.innerHTML = `
+                <span>${item}</span>
+                <span class="remove-btn" onclick="removeChip('${type}', ${index})">&times;</span>
+            `;
+            container.appendChild(chip);
+        });
+    }
+
+    function handleChipInput(event, type) {
+        if (event.key === 'Enter' && event.target.value.trim() !== '') {
+            currentData.escopo[type].push(event.target.value.trim());
+            event.target.value = '';
+            renderChips(type, type + 'Chips');
+            saveState();
+        }
+    }
+
+    function removeChip(type, index) {
+        currentData.escopo[type].splice(index, 1);
+        renderChips(type, type + 'Chips');
+        saveState();
+    }
+
+
+
+
+
+    function updateStatus(newStatus) {
+        currentStatus = newStatus;
+        saveState(() => {
+            location.reload(); // Recarrega para atualizar o visual do badge/dropdown
+        });
+    }
+
+    function formatDoc(cmd) {
+        document.execCommand(cmd, false, null);
+        document.getElementById('notesArea').focus();
+    }
+
+    function saveState(callback) {
+        currentData.notas_adesivas = document.getElementById('notesArea').innerHTML;
+
+        fetch(`{{ url_for('gestao_projetos.save_project', project_id=project.id) }}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                status: currentStatus,
+                dados: currentData
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    const indicator = document.getElementById('saveIndicator');
+                    indicator.classList.add('show');
+                    setTimeout(() => indicator.classList.remove('show'), 2000);
+                    if (callback) callback();
+                }
+            });
+    }
+</script>
+{% endblock %}

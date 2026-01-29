@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% block title %}Sugestão de Redistribuição Geral{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3>Sugestão de Redistribuição Geral de Categorias</h3>
+    <div class="d-flex gap-2">
+        <a href="{{ url_for('redistribute_details_page') }}" class="btn btn-detalhes">
+            <i class="bi bi-info-circle"></i> Detalhes
+        </a>
+        <a href="{{ url_for('analyst_list_page') }}" class="btn btn-pesquisar">
+            <i class="bi bi-arrow-left-circle"></i> Voltar para Lista de Analistas
+        </a>
+    </div>
+</div>
+
+{% if results.error %}
+<div class="alert alert-danger">
+    <strong>Erro:</strong> {{ results.error }}
+</div>
+{% else %}
+
+<!-- Seção de Métricas -->
+<div class="row g-4 mb-4">
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-header bgsitatual text-white">Situação Atual</div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">PI Médio por Analista: <strong>{{ results.metricas_antes.pi_medio | round(1) }}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Desvio Padrão da Carga: <strong>{{ results.metricas_antes.desvio_padrao | round(1) }}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Carga Máxima (PI): <strong>{{ results.metricas_antes.max_carga | int }}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Carga Mínima (PI): <strong>{{ results.metricas_antes.min_carga | int }}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Gini (0=igual • 1=concentrado):
+                        <strong title="0 = distribuição perfeitamente igual; 1 = concentração extrema">{{ results.gini_antes }}</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm border-success">
+            <div class="card-header bgsitsug text-white">Situação Sugerida</div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <!-- Churn no lugar do PI Médio -->
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Categorias movidas (churn):
+                        <strong class="text-success">{{ results.churn_total_movidas }}</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Desvio Padrão da Carga: <strong class="text-success">{{ results.metricas_depois.desvio_padrao | round(1) }}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Carga Máxima (PI): <strong>{{ results.metricas_depois.max_carga | int }}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">Carga Mínima (PI): <strong>{{ results.metricas_depois.min_carga | int }}</strong></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Gini (0=igual • 1=concentrado):
+                        <strong title="0 = distribuição perfeitamente igual; 1 = concentração extrema">{{ results.gini_depois }}</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Seção de Avisos -->
+{% if results.avisos %}
+<div class="alert alertwarning shadow-sm">
+    <h5 class="alert-heading"><i class="bi bi-exclamation-triangle-fill"></i> Pontos de Atenção</h5>
+    <ul class="mb-0">
+        {% for aviso in results.avisos %}
+        <li><small>{{ aviso }}</small></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<!-- Formulário de Filtro e Ordenação -->
+<div class="card shadow-sm mt-4">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5>Tabela de Redistribuição Sugerida</h5>
+            <div class="d-flex gap-2">
+                <!-- NOVO: botão Exportar .xlsx (à esquerda) preservando filtros/ordem -->
+                <a
+                  href="{{ url_for('export_sugestao_xlsx', sort_by=request.args.get('sort_by')) }}{% for analyst in current_filters %}&amp;analyst_filter={{ analyst | urlencode }}{% endfor %}"
+                  class="btn btn-exportar btn-sm">
+                  <i class="bi bi-file-earmark-excel"></i> Exportar (.xlsx)
+                </a>
+                <button class="btn btn-sm btn-sugestaogeral" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+                    <i class="bi bi-funnel-fill"></i> Filtrar e Ordenar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="collapse" id="filterCollapse">
+        <div class="card-body bg-light">
+            <form method="get" class="analista-filtro">
+                <h6>Filtrar por Novo Analista Sugerido:</h6>
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-2 mb-3">
+                    {% for analyst in all_suggested_analysts %}
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="analyst_filter" value="{{ analyst }}" id="check-{{ loop.index }}" {% if analyst in current_filters %}checked{% endif %}>
+                            <label class="form-check-label" for="check-{{ loop.index }}">{{ analyst }}</label>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-sugestaogeral btn-sm">Aplicar Filtro</button>
+                    <a href="{{ url_for('suggest_general_redistribution_page') }}" class="btn btn-secondary btn-sm">Limpar Filtros</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-sm mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Nome da Categoria</th>
+                    <th>Grupo</th>
+                    <th>PI</th>
+                    <th>Analista Atual</th>
+                    <th>
+                        <!-- Link de Ordenação que preserva os filtros atuais -->
+                        <a href="{{ url_for('suggest_general_redistribution_page', sort_by='novo_analista') }}{% for analyst in current_filters %}&amp;analyst_filter={{ analyst | urlencode }}{% endfor %}" class="text-decoration-none text-dark fw-bold">
+                            Novo Analista Sugerido <i class="bi bi-arrow-down-up"></i>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in results.sugestoes %}
+                <tr>
+                    <td>{{ s.Nome }}</td>
+                    <td><span class="badge bg-light text-dark">{{ s.Grupo }}</span></td>
+                    <td>{{ s.PI | int }}</td>
+                    <td>{{ s.Responsável_Atual }}</td>
+                    <td>
+                        {% if s.Responsável_Atual != s.Responsável_Sugerido %}
+                            <strong class="text-suggested">{{ s.Responsável_Sugerido }}</strong>
+                        {% else %}
+                            {{ s.Responsável_Sugerido }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="text-center p-4">Nenhuma categoria encontrada com os filtros aplicados.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

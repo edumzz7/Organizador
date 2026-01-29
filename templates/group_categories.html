@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Categorias do Grupo: {{ group_name }}{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Grupo: <span class="text-primary">{{ group_name }}</span></h3>
+    <a href="{{ url_for('categories_list_page') }}" class="btn btn-outline-secondary btn-sm">Voltar para todas as categorias</a>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped table-hover table-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Nome da Categoria</th>
+                <th>Responsável</th>
+                <th>PI</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>{{ category.Nome }}</td>
+                <td>{{ category.Responsável }}</td>
+                <td>{{ category.PI | int if category.PI is not none and not an_is_nan(category.PI) else '0' }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3" class="text-center">Nenhuma categoria encontrada para este grupo.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

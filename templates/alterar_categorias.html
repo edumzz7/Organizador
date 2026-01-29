@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Alterar Categorias de {{ analyst_name }}{% endblock %}
+{% block content %}
+<h3>Categorias de: <span class="text-warning">{{ analyst_name }}</span></h3>
+<div class="table-responsive">
+    <table class="table table-hover table-sm">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Nome da Categoria</th>
+                <th>Grupo</th>
+                <th>PI</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.Nome }}</td>
+                <td>
+                    <a href="{{ url_for('group_categories_page', group_name=category.Grupo) }}" class="badge bg-secondary text-white">
+                        {{ category.Grupo }}
+                    </a>
+                </td>
+                <td>{{ category.PI | int if category.PI is not none and not an_is_nan(category.PI) else '0' }}</td>
+                <td>
+                    <a href="{{ url_for('repassar_page', analyst_name=analyst_name, category_id=category.id) }}" class="btn btn-sm btn-pesquisar text-white">Repassar</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="text-center">Nenhuma categoria encontrada para este analista.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<p class="mt-3"><a href="{{ url_for('analyst_options_page', analyst_name=analyst_name) }}" class="btn btn-secondary">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/></svg>
+    Voltar</a></p>
+{% endblock %}

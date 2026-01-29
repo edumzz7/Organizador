@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block title %}Lista de Categorias{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 p-3 bg-light border rounded">
+    <form method="get" class="flex-grow-1 me-3">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Pesquisar por nome da categoria..." value="{{ search_query or '' }}">
+            <button class="btn btn-pesquisar" type="submit">Pesquisar</button>
+        </div>
+    </form>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#simulationModal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/></svg>
+        Simular Nova Categoria
+    </button>
+</div>
+
+{% if simulation_results %}
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-info text-white">
+        <h5>Resultado da Simulação para: "{{ sim_data.nome }}" (PI: {{ sim_data.pi }})</h5>
+    </div>
+    <div class="card-body">
+        {% if simulation_results.suggestions %}
+        <h6>Analistas Sugeridos:</h6>
+        <ul class="list-group">
+            {% for suggestion in simulation_results.suggestions %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><strong>{{ suggestion.name }}</strong> (PI Atual: {{ suggestion.current_pi | int }})</span>
+                <span class="badge bg-primary rounded-pill">{{ suggestion.similarity_count }} categoria(s) no mesmo grupo</span>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="text-muted">{{ simulation_results.error }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+<div class="table-responsive">
+    <table class="table table-hover table-sm">
+        <thead class="table-light">
+            <tr>
+                <th>Nome da Categoria</th>
+                <th>Grupo</th>
+                <th>
+  <a href="{{ url_for('categories_list_page',
+                      search=search_query,
+                      sort_by='responsavel',
+                      order='desc' if request.args.get('order') != 'desc' or request.args.get('sort_by') != 'responsavel' else 'asc') }}"
+     class="text-decoration-none text-dark">
+    Responsável <i class="bi bi-arrow-down-up"></i>
+  </a>
+</th>
+
+<th>
+  <a href="{{ url_for('categories_list_page',
+                      search=search_query,
+                      sort_by='pi',
+                      order=('asc' if current_sort=='pi' and current_order=='desc' else 'desc')) }}"
+     class="text-decoration-none text-dark">
+    PI <i class="bi bi-arrow-down-up"></i>
+  </a>
+</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('repassar_page', analyst_name=category.Responsável, category_id=category.id) }}">
+                        {{ category.Nome }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for('group_categories_page', group_name=category.Grupo) }}" class="badge bg-secondary text-white text-decoration-none">
+                        {{ category.Grupo }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url_for('alterar_categorias_page', analyst_name=category.Responsável) }}">
+                        {{ category.Responsável }}
+                    </a>
+                </td>
+                <td>{{ category.PI | int if category.PI is not none and not an_is_nan(category.PI) else '0' }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" class="text-center">Nenhuma categoria encontrada. Faça upload de um arquivo HTML para visualizar os dados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="simulationModal" tabindex="-1" aria-labelledby="simulationModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="simulationModalLabel">Simular Nova Categoria</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="sim_nome" class="form-label">Nome da Nova Categoria</label>
+            <input type="text" class="form-control" name="sim_nome" id="sim_nome" required>
+          </div>
+          <div class="mb-3">
+            <label for="sim_grupo" class="form-label">Grupo/Família</label>
+            <select class="form-select" name="sim_grupo" id="sim_grupo" required>
+                <option value="" disabled selected>Selecione um grupo</option>
+                {% for group in unique_groups %}
+                <option value="{{ group }}">{{ group }}</option>
+                {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="sim_pi" class="form-label">PIs Disponíveis</label>
+            <input type="number" class="form-control" name="sim_pi" id="sim_pi" required min="0">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Simular</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

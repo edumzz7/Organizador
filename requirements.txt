@@ -1,0 +1,7 @@
+Flask
+beautifulsoup4
+pandas
+numpy
+openpyxl
+gunicorn
+supabase

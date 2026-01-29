@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}Captar Categoria - {{ analyst_name }}{% endblock %}
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Captar Categoria para: <strong>{{ analyst_name }}</strong></h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>PI Atual:</strong> {{ analyst_stats.current_pi | int }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Média da Equipe:</strong> {{ analyst_stats.team_avg | int }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="mb-1"><strong>Grupo Predominante:</strong> {{ analyst_stats.predominant_group }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-info shadow-sm">
+    <i class="bi bi-info-circle-fill"></i> Estas são as melhores categorias disponíveis para captura, baseadas em:
+    <ul class="mb-0 mt-1">
+        <li><strong>Grupo:</strong> Preferência por categorias do mesmo grupo predominante do analista.</li>
+        <li><strong>PI:</strong> Categorias que aproximam o analista da média da equipe.</li>
+        <li><strong>Origem:</strong> Preferência por retirar de analistas sobrecarregados.</li>
+    </ul>
+</div>
+
+<div class="table-responsive shadow-sm">
+    <table class="table table-hover align-middle bg-white mb-0">
+        <thead class="table-light">
+            <tr>
+                <th>Categoria</th>
+                <th>Grupo</th>
+                <th class="text-center">PI</th>
+                <th>Responsável Atual</th>
+                <th>Impacto no Responsável</th>
+                <th>Impacto em {{ analyst_stats.first_name }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in suggestions %}
+            <tr>
+                <td>
+                    <div class="fw-bold">{{ s.category_name }}</div>
+                </td>
+                <td>
+                    <span class="badge bg-light text-dark border">{{ s.category_group }}</span>
+                </td>
+                <td class="text-center">{{ s.category_pi | int }}</td>
+                <td>
+                    <div>{{ s.current_owner }}</div>
+                    <small class="text-muted">PI: {{ s.owner_current_pi | int }}</small>
+                    {% if s.owner_is_overloaded %}
+                    <span class="badge bg-warning text-dark" title="Analista sobrecarregado">Sobrecarregado</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <small>{{ s.owner_first_name }}: {{ s.owner_current_pi | int }} <i class="bi bi-arrow-right"></i> {{
+                        (s.owner_current_pi - s.category_pi) | int }}</small>
+                </td>
+                <td>
+                    <small>{{ analyst_stats.current_pi | int }} <i class="bi bi-arrow-right"></i> {{
+                        (analyst_stats.current_pi + s.category_pi) | int }}</small>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="7" class="text-center py-4 text-muted">
+                    Nenhuma sugestão de captura encontrada no momento.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="mt-4 text-center">
+    <a href="{{ url_for('analyst_options_page', analyst_name=analyst_name) }}" class="btn btn-secondary">Voltar</a>
+</div>
+{% endblock %}

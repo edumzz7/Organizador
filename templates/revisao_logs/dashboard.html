@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard de Revisões{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('revisao_logs.static', filename='style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="revisao-logs-content">
+    <h1>Dashboard de Revisões</h1>
+    <div class="card create-review-card">
+        <h2>Criar Nova Revisão</h2>
+        <form action="{{ url_for('revisao_logs.criar_revisao') }}" method="post" enctype="multipart/form-data">
+            <div class="form-group"><label>Nome do Funcionário:</label><input type="text" name="employee" required
+                    placeholder="Ex: Joao Silva"></div>
+            <div class="form-group"><label>Categoria:</label><input type="text" name="category" required
+                    placeholder="Ex: Geladeiras"></div>
+            <div class="form-group"><label>Arquivo de Exportação HTML:</label><input type="file" name="file"
+                    accept=".html" required></div>
+            <button type="submit" class="btn btnpadrao">Criar e Iniciar Revisão</button>
+        </form>
+    </div>
+
+    <div class="employee-cards-container">
+        {% for employee, reviews in employees.items() %}
+        <div class="card employee-card">
+            <h2>{{ employee }}</h2>
+            <a href="{{ url_for('revisao_logs.analyst_dashboard', employee_name=employee) }}" class="btn btnpadrao">Ver
+                Desempenho Completo</a>
+            <ul class="review-list">
+                {% for review in reviews[:5] %} <!-- Mostra apenas as 5 últimas revisões -->
+                <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                    <a href="{{ url_for('revisao_logs.view_revisao', filename=review.filename) }}">
+                        <span class="review-date">{{ review.date }}</span><span class="review-category">{{
+                            review.category
+                            }}</span>
+                    </a>
+                    <form method="POST" action="{{ url_for('revisao_logs.excluir_revisao', filename=review.filename) }}"
+                        onsubmit="return confirm('Tem certeza que deseja excluir esta revisão?');">
+                        <button type="submit" class="btn-excluir">Excluir</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+        <div class="card">
+            <p>Nenhuma revisão encontrada. Crie uma para começar.</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endblock %}

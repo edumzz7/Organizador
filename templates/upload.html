@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Upload de Arquivo{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-header bgnovogrupo text-white">
+                <h3 class="mb-0">Selecione o arquivo HTML</h3>
+            </div>
+            <div class="card-body">
+                 <p class="card-text">Carregue o arquivo HTML da exportação do Controle de Processos para acessar a distribuição de categorias</p>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <input type="file" class="form-control" name="file" id="file" accept=".html" required>
+                    </div>
+                    <button type="submit" class="btn btn-warning w-100">Enviar e Processar</button>
+                </form>
+            </div>
+             <div class="card-footer text-muted">
+                Apenas as abas "Analistas" e "Categorias" dependem do arquivo carregado. A aba "Editar Grupos" e "Comparar" funcionam de forma independente.
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
