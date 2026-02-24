@@ -1,5 +1,9 @@
 import os
+from dotenv import load_dotenv
 from supabase import create_client, Client
+
+# Carrega variáveis do .env (apenas local; no Vercel, as envs já existem)
+load_dotenv()
 
 def get_supabase_client() -> Client:
     url = os.environ.get("SUPABASE_URL")

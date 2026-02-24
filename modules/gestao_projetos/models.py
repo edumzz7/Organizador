@@ -43,7 +43,7 @@ def create_project(cliente_nome, status="Ativo"):
     }
     
     try:
-        data, count = supabase.table('projetos').insert({
+        response = supabase.table('projetos').insert({
             "id": project_id,
             "cliente_nome": cliente_nome,
             "status": status,

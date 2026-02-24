@@ -43,8 +43,8 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 from modules.revisao_logs.routes import revisao_logs_bp
 from modules.gestao_projetos.routes import gestao_projetos_bp
 
-app.register_blueprint(revisao_logs_bp, url_for_label='logs', url_prefix='/logs')
-app.register_blueprint(gestao_projetos_bp, url_for_label='projetos', url_prefix='/projetos')
+app.register_blueprint(revisao_logs_bp, url_prefix='/logs')
+app.register_blueprint(gestao_projetos_bp, url_prefix='/projetos')
 
 # --- Inicialização Supabase (via import) ---
 from supabase_client import supabase

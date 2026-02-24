@@ -3,7 +3,7 @@
 {% block title %}Revisão: {{ review_data.header.category }} ({{ review_data.header.date }}){% endblock %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="{{ url_for('revisao_logs.static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('logs.static', filename='style.css') }}">
 {% endblock %}
 
 {% block extra_scripts %}
@@ -15,16 +15,16 @@
             "detalhesRestrito": {{ detalhes_restrito | tojson | safe }}
         }
     </script>
-<script src="{{ url_for('revisao_logs.static', filename='script.js') }}"></script>
+<script src="{{ url_for('logs.static', filename='script.js') }}"></script>
 {% endblock %}
 
 
 {% block content %}
 <div class="revisao-logs-content">
-    <a href="{{ url_for('revisao_logs.analyst_dashboard', employee_name=review_data.header.employee) }}"
+    <a href="{{ url_for('logs.analyst_dashboard', employee_name=review_data.header.employee) }}"
         class="back-link">&larr; Voltar para o Desempenho de {{ review_data.header.employee }}</a>
     <h1>Revisão de Matchs</h1>
-    <form action="{{ url_for('revisao_logs.view_revisao', filename=filename) }}" method="post">
+    <form action="{{ url_for('logs.view_revisao', filename=filename) }}" method="post">
         <div class="header-section">
             <div class="form-group"><label>Funcionário:</label><input type="text"
                     value="{{ review_data.header.employee }}" readonly class="readonly-input"></div>
@@ -97,7 +97,7 @@
 
         <div class="action-buttons">
             <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-            <a href="{{ url_for('revisao_logs.exportar_xlsx', filename=filename) }}" class="btn btn-success">Exportar
+            <a href="{{ url_for('logs.exportar_xlsx', filename=filename) }}" class="btn btn-success">Exportar
                 Erros (XLSX)</a>
         </div>
     </form>

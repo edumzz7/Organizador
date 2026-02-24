@@ -4,7 +4,7 @@ import io
 import os
 from .models import init_db, list_projects, create_project, get_project, update_project, delete_project, import_project
 
-gestao_projetos_bp = Blueprint('gestao_projetos', __name__,
+gestao_projetos_bp = Blueprint('projetos', __name__,
                                template_folder='../../templates',
                                static_folder='../../static/gestao_projetos')
 
@@ -21,17 +21,20 @@ def novo_projeto():
     nome = request.form.get('cliente_nome')
     if nome:
         p_id = create_project(nome)
+        if not p_id:
+            flash("Erro ao criar projeto. Verifique a conexão com o Supabase.", "danger")
+            return redirect(url_for('projetos.dashboard'))
         flash(f"Projeto '{nome}' criado com sucesso!", "success")
-        return redirect(url_for('gestao_projetos.workspace', project_id=p_id))
+        return redirect(url_for('projetos.workspace', project_id=p_id))
     flash("Nome do cliente é obrigatório.", "danger")
-    return redirect(url_for('gestao_projetos.dashboard'))
+    return redirect(url_for('projetos.dashboard'))
 
 @gestao_projetos_bp.route('/workspace/<project_id>')
 def workspace(project_id):
     project = get_project(project_id)
     if not project:
         flash("Projeto não encontrado.", "danger")
-        return redirect(url_for('gestao_projetos.dashboard'))
+        return redirect(url_for('projetos.dashboard'))
     return render_template('gestao_projetos/workspace.html', project=project)
 
 
@@ -59,7 +62,7 @@ def export_project(project_id):
     project = get_project(project_id)
     if not project:
         flash("Projeto não encontrado.", "danger")
-        return redirect(url_for('gestao_projetos.dashboard'))
+        return redirect(url_for('projetos.dashboard'))
     
     # Remove o row object e deixa limpo para JSON
     output = json.dumps(project, indent=4, ensure_ascii=False)
@@ -74,12 +77,12 @@ def export_project(project_id):
 def import_project_route():
     if 'file' not in request.files:
         flash("Nenhum arquivo enviado.", "danger")
-        return redirect(url_for('gestao_projetos.dashboard'))
+        return redirect(url_for('projetos.dashboard'))
     
     file = request.files['file']
     if file.filename == '':
         flash("Arquivo inválido.", "danger")
-        return redirect(url_for('gestao_projetos.dashboard'))
+        return redirect(url_for('projetos.dashboard'))
     
     try:
         content = file.read().decode('utf-8')
@@ -90,10 +93,10 @@ def import_project_route():
     except Exception as e:
         flash(f"Erro na importação: {e}", "danger")
         
-    return redirect(url_for('gestao_projetos.dashboard'))
+    return redirect(url_for('projetos.dashboard'))
 
 @gestao_projetos_bp.route('/delete/<project_id>', methods=['POST'])
 def delete_project_route(project_id):
     delete_project(project_id)
     flash("Projeto excluído.", "success")
-    return redirect(url_for('gestao_projetos.dashboard'))
+    return redirect(url_for('projetos.dashboard'))

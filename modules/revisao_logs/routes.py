@@ -7,7 +7,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, send_f
 from bs4 import BeautifulSoup
 from datetime import datetime
 
-revisao_logs_bp = Blueprint('revisao_logs', __name__, 
+revisao_logs_bp = Blueprint('logs', __name__, 
                            template_folder='../../templates',
                            static_folder='../../static/revisao_logs')
 
@@ -102,7 +102,7 @@ def analyst_dashboard(employee_name):
 def criar_revisao():
     if 'file' not in request.files or request.files['file'].filename == '':
         flash("Nenhum arquivo HTML selecionado!", "warning")
-        return redirect(url_for('revisao_logs.dashboard'))
+        return redirect(url_for('logs.dashboard'))
 
     file = request.files['file']
     employee = request.form.get('employee')
@@ -110,25 +110,25 @@ def criar_revisao():
     
     if not all([employee, category]):
         flash("Nome do funcionário e categoria são obrigatórios!", "warning")
-        return redirect(url_for('revisao_logs.dashboard'))
+        return redirect(url_for('logs.dashboard'))
 
     html_content = file.read()
     parsed_data, file_date_str = parse_html_table(html_content)
     
     if not file_date_str:
         flash("Não foi possível encontrar uma data válida no arquivo HTML.", "danger")
-        return redirect(url_for('revisao_logs.dashboard'))
+        return redirect(url_for('logs.dashboard'))
     
     filename = f"{file_date_str}_{sanitize_filename(employee)}_{sanitize_filename(category)}.json"
     filepath = os.path.join(REVISIONS_DIR, filename)
     
     if os.path.exists(filepath):
         flash(f"Uma revisão para este funcionário, categoria e data ({file_date_str}) já existe.", "info")
-        return redirect(url_for('revisao_logs.view_revisao', filename=filename))
+        return redirect(url_for('logs.view_revisao', filename=filename))
 
     if not parsed_data:
         flash("Nenhum dado válido encontrado no arquivo HTML.", "danger")
-        return redirect(url_for('revisao_logs.dashboard'))
+        return redirect(url_for('logs.dashboard'))
 
     review_data = {
         "header": {"employee": employee, "category": category, "date": file_date_str},
@@ -145,14 +145,14 @@ def criar_revisao():
         json.dump(review_data, f, indent=4, ensure_ascii=False)
 
     flash("Nova revisão criada com sucesso!", "success")
-    return redirect(url_for('revisao_logs.view_revisao', filename=filename))
+    return redirect(url_for('logs.view_revisao', filename=filename))
 
 @revisao_logs_bp.route('/revisao/<filename>', methods=['GET', 'POST'])
 def view_revisao(filename):
     filepath = os.path.join(REVISIONS_DIR, filename)
     if not os.path.exists(filepath):
         flash("Arquivo de revisão não encontrado.", "danger")
-        return redirect(url_for('revisao_logs.dashboard'))
+        return redirect(url_for('logs.dashboard'))
 
     with open(filepath, 'r', encoding='utf-8') as f:
         review_data = json.load(f)
@@ -182,7 +182,7 @@ def view_revisao(filename):
             json.dump(review_data, f, indent=4, ensure_ascii=False)
         
         flash("Alterações salvas com sucesso!", "success")
-        return redirect(url_for('revisao_logs.view_revisao', filename=filename))
+        return redirect(url_for('logs.view_revisao', filename=filename))
     
     return render_template('revisao_logs/review_detail.html', review_data=review_data, filename=filename,
                            tipos_erro=TIPOS_ERRO, detalhes_completo=DETALHES_ERRO_COMPLETO,
@@ -204,7 +204,7 @@ def excluir_revisao(filename):
 @revisao_logs_bp.route('/exportar_xlsx/<filename>')
 def exportar_xlsx(filename):
     filepath = os.path.join(REVISIONS_DIR, filename)
-    if not os.path.exists(filepath): return redirect(url_for('revisao_logs.dashboard'))
+    if not os.path.exists(filepath): return redirect(url_for('logs.dashboard'))
     with open(filepath, 'r', encoding='utf-8') as f: review_data = json.load(f)
     export_data = []
     for row in review_data['table_data']:
@@ -216,7 +216,7 @@ def exportar_xlsx(filename):
             })
     if not export_data:
         flash("Nenhuma linha com erro para exportar.", "info")
-        return redirect(url_for('revisao_logs.view_revisao', filename=filename))
+        return redirect(url_for('logs.view_revisao', filename=filename))
     df = pd.DataFrame(export_data)
     output = io.BytesIO()
     df.to_excel(output, index=False, sheet_name='Erros Reportados')

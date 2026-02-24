@@ -3,13 +3,13 @@
 {% block title %}Workspace: {{ project.cliente_nome }}{% endblock %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="{{ url_for('gestao_projetos.static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('projetos.static', filename='style.css') }}">
 {% endblock %}
 
 {% block content %}
 <div class="mb-4 d-flex justify-content-between align-items-center">
     <div>
-        <a href="{{ url_for('gestao_projetos.dashboard') }}" class="text-decoration-none small">
+        <a href="{{ url_for('projetos.dashboard') }}" class="text-decoration-none small">
             <i class="bi bi-arrow-left"></i> Voltar para Lista
         </a>
         <h2 class="h3 mb-0 mt-1" id="projectName">{{ project.cliente_nome }}</h2>
@@ -39,11 +39,11 @@
                 </li>
             </ul>
         </div>
-        <a href="{{ url_for('gestao_projetos.export_project', project_id=project.id) }}"
+        <a href="{{ url_for('projetos.export_project', project_id=project.id) }}"
             class="btn btn-sm btn-outline-success">
             <i class="bi bi-download"></i> Exportar
         </a>
-        <form action="{{ url_for('gestao_projetos.delete_project_route', project_id=project.id) }}" method="POST"
+        <form action="{{ url_for('projetos.delete_project_route', project_id=project.id) }}" method="POST"
             class="d-inline" onsubmit="return confirm('Excluir este projeto permanentemente?');">
             <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
         </form>
@@ -70,23 +70,38 @@
         <h5 class="mb-3"><i class="bi bi-bullseye"></i> Escopo de Trabalho</h5>
 
         <div class="mb-4">
-            <label class="form-label small text-muted text-uppercase">Lojas</label>
-            <div class="chip-container" id="lojasChips"></div>
-            <input type="text" class="form-control form-control-sm" placeholder="Adicionar loja (Enter)"
-                onkeydown="handleChipInput(event, 'lojas');">
+            <div class="section-header-toggle mb-1" id="toggleLojas" onclick="toggleScopeSection('lojas')">
+                <label class="form-label small text-muted text-uppercase mb-0" style="cursor: pointer;">Lojas</label>
+                <i class="bi bi-chevron-down small text-muted"></i>
+            </div>
+            <div id="contentLojas" class="scope-content">
+                <div class="chip-container" id="lojasChips"></div>
+                <input type="text" class="form-control form-control-sm mt-2" placeholder="Adicionar loja (Enter)"
+                    onkeydown="handleChipInput(event, 'lojas');">
+            </div>
         </div>
         <div class="mb-4">
-            <label class="form-label small text-muted text-uppercase">Marcas</label>
-            <div class="chip-container" id="marcasChips"></div>
-            <input type="text" class="form-control form-control-sm" placeholder="Adicionar marca (Enter)"
-                onkeydown="handleChipInput(event, 'marcas');">
+            <div class="section-header-toggle mb-1" id="toggleMarcas" onclick="toggleScopeSection('marcas')">
+                <label class="form-label small text-muted text-uppercase mb-0" style="cursor: pointer;">Marcas</label>
+                <i class="bi bi-chevron-down small text-muted"></i>
+            </div>
+            <div id="contentMarcas" class="scope-content">
+                <div class="chip-container" id="marcasChips"></div>
+                <input type="text" class="form-control form-control-sm mt-2" placeholder="Adicionar marca (Enter)"
+                    onkeydown="handleChipInput(event, 'marcas');">
+            </div>
         </div>
-
         <div class="mb-4">
-            <label class="form-label small text-muted text-uppercase">Categorias</label>
-            <div class="chip-container" id="categoriasChips"></div>
-            <input type="text" class="form-control form-control-sm" placeholder="Adicionar categoria (Enter)"
-                onkeydown="handleChipInput(event, 'categorias');">
+            <div class="section-header-toggle mb-1" id="toggleCategorias" onclick="toggleScopeSection('categorias')">
+                <label class="form-label small text-muted text-uppercase mb-0"
+                    style="cursor: pointer;">Categorias</label>
+                <i class="bi bi-chevron-down small text-muted"></i>
+            </div>
+            <div id="contentCategorias" class="scope-content">
+                <div class="chip-container" id="categoriasChips"></div>
+                <input type="text" class="form-control form-control-sm mt-2" placeholder="Adicionar categoria (Enter)"
+                    onkeydown="handleChipInput(event, 'categorias');">
+            </div>
         </div>
 
         <div class="mt-5 pt-3 border-top">
@@ -164,8 +179,9 @@
 
     // Inicialização da UI
     document.addEventListener('DOMContentLoaded', () => {
-        migrateData();
-        renderAll();
+        renderAll(); // Primeiro popula o DOM (especialmente o notesArea)
+        migrateData(); // Depois migra e salva se necessário
+
         // Auto-save ao digitar com debounce
         let timeout = null;
         document.getElementById('notesArea').addEventListener('input', () => {
@@ -216,7 +232,15 @@
             });
         }
 
-        if (changed) saveState();
+        // 4. UI State (Colapsáveis)
+        if (!currentData.ui_state) {
+            currentData.ui_state = {
+                collapsed: { lojas: false, marcas: false, categorias: false }
+            };
+            changed = true;
+        }
+
+        if (changed) saveState(null, true); // true indica que não deve ler do DOM
     }
 
     function renderAll() {
@@ -227,8 +251,22 @@
         renderStages();
         document.getElementById('notesArea').innerHTML = currentData.notas_adesivas || '';
 
-        // Ajusta botão de adicionar etapa
-        document.getElementById('addStageBtn').style.display = (currentData.tipo === 'entrega em etapas') ? 'block' : 'none';
+        // Aplicar estado colapsado da UI
+        if (currentData.ui_state && currentData.ui_state.collapsed) {
+            Object.keys(currentData.ui_state.collapsed).forEach(section => {
+                const container = document.getElementById('content' + section.charAt(0).toUpperCase() + section.slice(1));
+                const toggle = document.getElementById('toggle' + section.charAt(0).toUpperCase() + section.slice(1));
+                if (container && toggle) {
+                    if (currentData.ui_state.collapsed[section]) {
+                        container.classList.add('collapsed');
+                        toggle.classList.add('collapsed');
+                    } else {
+                        container.classList.remove('collapsed');
+                        toggle.classList.remove('collapsed');
+                    }
+                }
+            });
+        }
 
         // Atualiza botões do header
         document.getElementById('typeButton').textContent = currentData.tipo.charAt(0).toUpperCase() + currentData.tipo.slice(1);
@@ -440,6 +478,15 @@
         currentData.recursos.pastas[fIdx].items.splice(iIdx, 1);
         renderResources();
         saveState();
+    }
+
+    function toggleScopeSection(section) {
+        if (!currentData.ui_state) {
+            currentData.ui_state = { collapsed: { lojas: false, marcas: false, categorias: false } };
+        }
+        currentData.ui_state.collapsed[section] = !currentData.ui_state.collapsed[section];
+        renderAll();
+        saveState(null, true);
     }
 
     function renderChips(type, elementId) {
@@ -661,10 +708,12 @@
         document.getElementById('notesArea').focus();
     }
 
-    function saveState(callback) {
-        currentData.notas_adesivas = document.getElementById('notesArea').innerHTML;
+    function saveState(callback, onlyDataObject = false) {
+        if (!onlyDataObject) {
+            currentData.notas_adesivas = document.getElementById('notesArea').innerHTML;
+        }
 
-        fetch(`{{ url_for('gestao_projetos.save_project', project_id=project.id) }}`, {
+        fetch(`{{ url_for('projetos.save_project', project_id=project.id) }}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

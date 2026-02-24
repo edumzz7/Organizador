@@ -3,7 +3,7 @@
 {% block title %}Desempenho de {{ employee_name }}{% endblock %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="{{ url_for('revisao_logs.static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('logs.static', filename='style.css') }}">
 {% endblock %}
 
 {% block extra_scripts %}
@@ -11,20 +11,20 @@
 <script id="app-data" type="application/json">
         { "chartData": {{ chart_data | tojson | safe }} }
     </script>
-<script src="{{ url_for('revisao_logs.static', filename='script.js') }}"></script>
+<script src="{{ url_for('logs.static', filename='script.js') }}"></script>
 {% endblock %}
 
 
 {% block content %}
 <div class="revisao-logs-content">
-    <a href="{{ url_for('revisao_logs.dashboard') }}" class="back-link">&larr; Voltar ao Dashboard</a>
+    <a href="{{ url_for('logs.dashboard') }}" class="back-link">&larr; Voltar ao Dashboard</a>
     <h1>Desempenho de: {{ employee_name }}</h1>
 
     <div class="card">
         <h2>Histórico de Revisões</h2>
         <ul class="review-list performance-list">
             {% for review in employee_reviews | reverse %}
-            <li><a href="{{ url_for('revisao_logs.view_revisao', filename=review.filename) }}">
+            <li><a href="{{ url_for('logs.view_revisao', filename=review.filename) }}">
                     <span class="review-date">{{ review.date }}</span>
                     <span class="review-category">{{ review.category }}</span>
                     <span class="review-percentage">{{ "%.1f"|format(review.error_percentage) }}% de Erro</span>

@@ -34,10 +34,10 @@
           href="{{ url_for('edit_groups_page') }}">Editar Grupos</a>
         <a class="nav-link {{ 'active' if request.endpoint == 'compare_page' else '' }}"
           href="{{ url_for('compare_page') }}">Comparar</a>
-        <a class="nav-link {{ 'active' if request.blueprint == 'revisao_logs' else '' }}"
-          href="{{ url_for('revisao_logs.dashboard') }}">Revisão Logs</a>
-        <a class="nav-link {{ 'active' if request.blueprint == 'gestao_projetos' else '' }}"
-          href="{{ url_for('gestao_projetos.dashboard') }}">Gestão de Projetos</a>
+        <a class="nav-link {{ 'active' if request.blueprint == 'logs' else '' }}"
+          href="{{ url_for('logs.dashboard') }}">Revisão Logs</a>
+        <a class="nav-link {{ 'active' if request.blueprint == 'projetos' else '' }}"
+          href="{{ url_for('projetos.dashboard') }}">Gestão de Projetos</a>
       </nav>
     </header>
 

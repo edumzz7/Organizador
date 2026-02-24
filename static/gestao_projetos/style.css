@@ -31,6 +31,17 @@
     border-color: #073983 !important;
 }
 
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #073983 !important;
+    color: white !important;
+}
+
+.dropdown-item:active {
+    background-color: #052a61 !important;
+    color: white !important;
+}
+
 .project-dashboard {
     padding: 20px 0;
 }
@@ -98,6 +109,37 @@
     flex-wrap: wrap;
     gap: 8px;
     padding: 10px 0;
+}
+
+.scope-content {
+    transition: max-height 0.3s ease-out, opacity 0.2s, padding 0.3s ease-out;
+    overflow: hidden;
+    max-height: 1000px;
+    /* arbitrary large value for transition */
+    opacity: 1;
+}
+
+.scope-content.collapsed {
+    max-height: 0;
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.section-header-toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+}
+
+.section-header-toggle i {
+    transition: transform 0.2s;
+}
+
+.section-header-toggle.collapsed i {
+    transform: rotate(-90deg);
 }
 
 .chip {

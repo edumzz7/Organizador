@@ -5,3 +5,4 @@ numpy
 openpyxl
 gunicorn
 supabase
+python-dotenv
