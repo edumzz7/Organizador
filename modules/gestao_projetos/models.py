@@ -24,6 +24,11 @@ def create_project(cliente_nome, status="Ativo"):
     
     # Estrutura inicial do JSON
     dados_json = {
+        "tipo": "entrega única",
+        "etapas": [
+            {"nome": "Etapa 1", "estudo": False, "desenv": False, "matchs": False, "revisao": False}
+        ],
+        "data_finalizacao": None,
         "escopo": {
             "lojas": [],
             "marcas": [],

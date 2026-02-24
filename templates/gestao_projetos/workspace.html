@@ -28,6 +28,17 @@
                 <li><a class="dropdown-item" href="#" onclick="updateStatus('Concluído');">Concluído</a></li>
             </ul>
         </div>
+        <div class="dropdown">
+            <button class="btn btn-outline-info btn-sm dropdown-toggle text-dark" type="button"
+                data-bs-toggle="dropdown" id="typeButton">
+                {{ project.dados.tipo | default('Entrega Única') | title }}
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" onclick="updateType('entrega única');">Entrega Única</a></li>
+                <li><a class="dropdown-item" href="#" onclick="updateType('entrega em etapas');">Entrega em Etapas</a>
+                </li>
+            </ul>
+        </div>
         <a href="{{ url_for('gestao_projetos.export_project', project_id=project.id) }}"
             class="btn btn-sm btn-outline-success">
             <i class="bi bi-download"></i> Exportar
@@ -58,8 +69,12 @@
     <div class="workspace-col col-scope">
         <h5 class="mb-3"><i class="bi bi-bullseye"></i> Escopo de Trabalho</h5>
 
-
-
+        <div class="mb-4">
+            <label class="form-label small text-muted text-uppercase">Lojas</label>
+            <div class="chip-container" id="lojasChips"></div>
+            <input type="text" class="form-control form-control-sm" placeholder="Adicionar loja (Enter)"
+                onkeydown="handleChipInput(event, 'lojas');">
+        </div>
         <div class="mb-4">
             <label class="form-label small text-muted text-uppercase">Marcas</label>
             <div class="chip-container" id="marcasChips"></div>
@@ -72,6 +87,19 @@
             <div class="chip-container" id="categoriasChips"></div>
             <input type="text" class="form-control form-control-sm" placeholder="Adicionar categoria (Enter)"
                 onkeydown="handleChipInput(event, 'categorias');">
+        </div>
+
+        <div class="mt-5 pt-3 border-top">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0"><i class="bi bi-bar-chart-steps"></i> Progresso</h5>
+                <button class="btn btn-sm btn-outline-primary" id="addStageBtn" onclick="addStage()"
+                    style="display: none;">
+                    <i class="bi bi-plus-lg"></i> Etapa
+                </button>
+            </div>
+            <div id="stagesContainer" class="progress-stages-container">
+                <!-- Barras de progresso renderizadas aqui -->
+            </div>
         </div>
     </div>
 
@@ -91,6 +119,33 @@
     </div>
 </div>
 
+<!-- Modal para Vincular Loja/Marca à Categoria -->
+<div class="modal fade" id="categoryLinksModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header py-2">
+                <h6 class="modal-title" id="modalCatName">Vincular à Categoria</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label small fw-bold">Vincular Loja</label>
+                    <select class="form-select form-select-sm" id="selectCatLoja">
+                        <option value="">Selecione...</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label small fw-bold">Vincular Marca</label>
+                    <select class="form-select form-select-sm" id="selectCatMarca">
+                        <option value="">Selecione...</option>
+                    </select>
+                </div>
+                <button class="btn btn-sm btn-primary w-100" onclick="saveCategoryLink()">Vincular</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block extra_scripts %}
@@ -104,6 +159,7 @@
     let project = JSON.parse(projectData);
     let currentData = project.dados;
     let currentStatus = project.status;
+    let selectedCategoryIdx = null; // Para o modal de vínculos
 
     // Inicialização da UI
     document.addEventListener('DOMContentLoaded', () => {
@@ -118,31 +174,59 @@
     });
 
     function migrateData() {
-        // Se ainda estiver no formato antigo (recursos.tickets/recursos.planilhas são arrays)
+        let changed = false;
+
+        // 1. Recursos (Migração já existente)
         if (Array.isArray(currentData.recursos.tickets)) {
             const geralItems = [];
             currentData.recursos.tickets.forEach(t => geralItems.push({ ...t, type: 'ticket' }));
             currentData.recursos.planilhas.forEach(p => geralItems.push({ ...p, type: 'planilha' }));
 
             currentData.recursos = {
-                pastas: [
-                    {
-                        id: 'folder-' + Date.now(),
-                        nome: 'Geral',
-                        items: geralItems,
-                        collapsed: false
-                    }
-                ]
+                pastas: [{ id: 'folder-' + Date.now(), nome: 'Geral', items: geralItems, collapsed: false }]
             };
-            saveState();
+            changed = true;
         }
+
+        // 2. Novos campos de Tipo e Etapas
+        if (!currentData.tipo) {
+            currentData.tipo = "entrega única";
+            changed = true;
+        }
+        if (!currentData.etapas) {
+            currentData.etapas = [
+                { nome: "Etapa 1", estudo: false, desenv: false, matchs: false, revisao: false }
+            ];
+            changed = true;
+        }
+
+        // 3. Categorias (De String para Objeto)
+        if (Array.isArray(currentData.escopo.categorias)) {
+            currentData.escopo.categorias = currentData.escopo.categorias.map(cat => {
+                if (typeof cat === 'string') {
+                    changed = true;
+                    return { nome: cat, lojas: [], marcas: [] };
+                }
+                return cat;
+            });
+        }
+
+        if (changed) saveState();
     }
 
     function renderAll() {
         renderResources();
+        renderChips('lojas', 'lojasChips');
         renderChips('marcas', 'marcasChips');
         renderChips('categorias', 'categoriasChips');
+        renderStages();
         document.getElementById('notesArea').innerHTML = currentData.notas_adesivas || '';
+
+        // Ajusta botão de adicionar etapa
+        document.getElementById('addStageBtn').style.display = (currentData.tipo === 'entrega em etapas') ? 'block' : 'none';
+
+        // Atualiza botões do header
+        document.getElementById('typeButton').textContent = currentData.tipo.charAt(0).toUpperCase() + currentData.tipo.slice(1);
     }
 
     function renderResources() {
@@ -355,23 +439,49 @@
 
     function renderChips(type, elementId) {
         const container = document.getElementById(elementId);
+        if (!container) return;
         container.innerHTML = '';
         const items = currentData.escopo[type] || [];
 
         items.forEach((item, index) => {
             const chip = document.createElement('div');
-            chip.className = 'chip';
-            chip.innerHTML = `
-                <span>${item}</span>
-                <span class="remove-btn" onclick="removeChip('${type}', ${index})">&times;</span>
-            `;
+
+            if (type === 'categorias') {
+                const hasSubs = (item.lojas && item.lojas.length > 0) || (item.marcas && item.marcas.length > 0);
+                chip.className = 'chip category-chip';
+                chip.innerHTML = `
+                    <span onclick="openCatLinks(${index})">${item.nome}</span>
+                    ${hasSubs ? '<i class="bi bi-chevron-down small text-muted"></i>' : ''}
+                    <span class="remove-btn" onclick="removeChip('categorias', ${index})">&times;</span>
+                `;
+
+                if (hasSubs) {
+                    const subDiv = document.createElement('div');
+                    subDiv.className = 'category-sub-items w-100 mt-1';
+                    item.lojas.forEach(l => subDiv.innerHTML += `<span class="sub-item-badge">L: ${l}</span>`);
+                    item.marcas.forEach(m => subDiv.innerHTML += `<span class="sub-item-badge">M: ${m}</span>`);
+                    chip.classList.add('flex-wrap');
+                    chip.appendChild(subDiv);
+                }
+            } else {
+                chip.className = 'chip';
+                chip.innerHTML = `
+                    <span>${item}</span>
+                    <span class="remove-btn" onclick="removeChip('${type}', ${index})">&times;</span>
+                `;
+            }
             container.appendChild(chip);
         });
     }
 
     function handleChipInput(event, type) {
         if (event.key === 'Enter' && event.target.value.trim() !== '') {
-            currentData.escopo[type].push(event.target.value.trim());
+            const val = event.target.value.trim();
+            if (type === 'categorias') {
+                currentData.escopo.categorias.push({ nome: val, lojas: [], marcas: [] });
+            } else {
+                currentData.escopo[type].push(val);
+            }
             event.target.value = '';
             renderChips(type, type + 'Chips');
             saveState();
@@ -384,12 +494,113 @@
         saveState();
     }
 
+    // --- Lógica de Vínculos de Categoria ---
+    function openCatLinks(idx) {
+        selectedCategoryIdx = idx;
+        const cat = currentData.escopo.categorias[idx];
+        document.getElementById('modalCatName').textContent = `Vincular à: ${cat.nome}`;
+
+        // Popula selects
+        const selectLoja = document.getElementById('selectCatLoja');
+        const selectMarca = document.getElementById('selectCatMarca');
+
+        selectLoja.innerHTML = '<option value="">Selecione Loja...</option>';
+        currentData.escopo.lojas.forEach(l => selectLoja.innerHTML += `<option value="${l}">${l}</option>`);
+
+        selectMarca.innerHTML = '<option value="">Selecione Marca...</option>';
+        currentData.escopo.marcas.forEach(m => selectMarca.innerHTML += `<option value="${m}">${m}</option>`);
+
+        const modal = new bootstrap.Modal(document.getElementById('categoryLinksModal'));
+        modal.show();
+    }
+
+    function saveCategoryLink() {
+        if (selectedCategoryIdx === null) return;
+        const cat = currentData.escopo.categorias[selectedCategoryIdx];
+        const loja = document.getElementById('selectCatLoja').value;
+        const marca = document.getElementById('selectCatMarca').value;
+
+        if (loja && !cat.lojas.includes(loja)) cat.lojas.push(loja);
+        if (marca && !cat.marcas.includes(marca)) cat.marcas.push(marca);
+
+        renderChips('categorias', 'categoriasChips');
+        saveState();
+        bootstrap.Modal.getInstance(document.getElementById('categoryLinksModal')).hide();
+    }
+
+    // --- Lógica de Etapas / Progresso ---
+    function renderStages() {
+        const container = document.getElementById('stagesContainer');
+        container.innerHTML = '';
+
+        currentData.etapas.forEach((etapa, idx) => {
+            const div = document.createElement('div');
+            div.className = 'stage-item mb-3';
+            div.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-bold small text-uppercase">${etapa.nome}</span>
+                    ${currentData.tipo === 'entrega em etapas' ?
+                    `<button class="btn btn-sm text-danger p-0" onclick="removeStage(${idx})"><i class="bi bi-x-circle"></i></button>` : ''}
+                </div>
+                <div class="step-indicator">
+                    ${['estudo', 'desenv', 'matchs', 'revisao'].map(step => `
+                        <div class="step ${etapa[step] ? 'active' : ''}" onclick="toggleStep(${idx}, '${step}')">
+                            <i class="bi bi-check-lg"></i>
+                            <span class="step-label">${labelFor(step)}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    function labelFor(step) {
+        const labels = { 'estudo': 'Estudo', 'desenv': 'Desenv.', 'matchs': 'Matchs', 'revisao': 'Revisão' };
+        return labels[step] || step;
+    }
+
+    function toggleStep(stageIdx, step) {
+        currentData.etapas[stageIdx][step] = !currentData.etapas[stageIdx][step];
+        renderStages();
+        saveState();
+    }
+
+    function addStage() {
+        const count = currentData.etapas.length + 1;
+        currentData.etapas.push({ nome: `Etapa ${count}`, estudo: false, desenv: false, matchs: false, revisao: false });
+        renderStages();
+        saveState();
+    }
+
+    function removeStage(idx) {
+        if (currentData.etapas.length > 1 && confirm("Excluir esta etapa?")) {
+            currentData.etapas.splice(idx, 1);
+            renderStages();
+            saveState();
+        }
+    }
+
+    function updateType(newType) {
+        currentData.tipo = newType;
+        if (newType === 'entrega única' && currentData.etapas.length > 1) {
+            currentData.etapas = [currentData.etapas[0]];
+        }
+        renderAll();
+        saveState();
+    }
+
 
 
 
 
     function updateStatus(newStatus) {
         currentStatus = newStatus;
+        if (newStatus === 'Concluído') {
+            currentData.data_finalizacao = new Date().toISOString().split('T')[0];
+        } else {
+            currentData.data_finalizacao = null;
+        }
         saveState(() => {
             location.reload(); // Recarrega para atualizar o visual do badge/dropdown
         });

@@ -27,42 +27,59 @@
         </div>
     </div>
 
-    <div class="row g-4">
-        {% for p in projects %}
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm card-project status-{{ p.status.lower() }} clickable-card"
-                data-url="{{ url_for('gestao_projetos.workspace', project_id=p.id) }}">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <h5 class="card-title mb-0">{{ p.cliente_nome }}</h5>
-                        <span class="badge badge-{{ p.status.lower() }}">{{ p.status }}</span>
-                    </div>
-                    <div class="text-muted small mb-3">
-                        Criado em: {{ p.data_criacao[:10] }}
-                    </div>
-                    <div class="d-flex gap-3 text-secondary">
-                        <div title="Tickets">
-                            <i class="bi bi-ticket-perforated"></i> {{ p.stats.tickets }}
-                        </div>
-                        <div title="Planilhas">
-                            <i class="bi bi-table"></i> {{ p.stats.planilhas }}
-                        </div>
-                        <div title="Links">
-                            <i class="bi bi-link-45deg"></i> {{ p.stats.links }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% else %}
+    <div id="projectsContainer">
+        <!-- Projetos serão renderizados aqui com agrupamento por mês via JS -->
+    </div>
+
+    <div id="noProjects" style="display: none;">
         <div class="col-12">
             <div class="text-center py-5 bg-white rounded-4 border">
                 <i class="bi bi-folder2-open fs-1 text-muted"></i>
                 <p class="mt-3 text-muted">Nenhum projeto encontrado. Comece criando um novo!</p>
             </div>
         </div>
-        {% endfor %}
     </div>
+
+    <!-- Template para o Card (Escondido) -->
+    <template id="projectCardTemplate">
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm card-project clickable-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h5 class="card-title mb-0 cliente-nome"></h5>
+                        <div class="d-flex flex-column align-items-end gap-1">
+                            <span class="badge project-status-badge"></span>
+                            <span class="completion-date-badge" style="display: none;"></span>
+                        </div>
+                    </div>
+                    <div class="text-muted small mb-2 data-criacao"></div>
+
+                    <div class="progress-info mb-3">
+                        <div class="d-flex justify-content-between small text-muted mb-1">
+                            <span>Progresso</span>
+                            <span class="progress-percent">0%</span>
+                        </div>
+                        <div class="project-progress-mini">
+                            <div class="progress-bar-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex gap-3 text-secondary small">
+                            <div title="Tickets"><i class="bi bi-ticket-perforated"></i> <span
+                                    class="count-tickets">0</span></div>
+                            <div title="Planilhas"><i class="bi bi-table"></i> <span class="count-planilhas">0</span>
+                            </div>
+                            <div title="Links"><i class="bi bi-link-45deg"></i> <span class="count-links">0</span></div>
+                        </div>
+                        <button class="btn btn-sm btn-outline-danger border-0 delete-btn" title="Excluir Projeto">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
 </div>
 
 <!-- Modal Novo Projeto -->
@@ -89,13 +106,128 @@
 </div>
 {% endblock %}
 {% block extra_scripts %}
+<script id="projects-data" type="application/json">
+    {{ projects | tojson | safe }}
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.clickable-card').forEach(function (card) {
-            card.addEventListener('click', function () {
-                window.location.href = this.getAttribute('data-url');
-            });
-        });
+        const rawData = document.getElementById('projects-data').textContent;
+        const projects = JSON.parse(rawData);
+        renderProjects(projects);
     });
+
+    function renderProjects(projects) {
+        const container = document.getElementById('projectsContainer');
+        const noProjects = document.getElementById('noProjects');
+        container.innerHTML = '';
+
+        if (!projects || projects.length === 0) {
+            noProjects.style.display = 'block';
+            return;
+        }
+        noProjects.style.display = 'none';
+
+        // Agrupar por mês
+        const groups = {};
+        projects.forEach(p => {
+            const date = new Date(p.data_criacao);
+            const monthName = date.toLocaleString('pt-BR', { month: 'long', year: 'numeric' });
+            if (!groups[monthName]) groups[monthName] = [];
+            groups[monthName].push(p);
+        });
+
+        // Renderizar grupos
+        for (const month in groups) {
+            const groupHeader = document.createElement('div');
+            groupHeader.className = 'month-group-header';
+            groupHeader.textContent = month;
+            container.appendChild(groupHeader);
+
+            const row = document.createElement('div');
+            row.className = 'row g-3';
+            container.appendChild(row);
+
+            groups[month].forEach(p => {
+                const card = createProjectCard(p);
+                row.appendChild(card);
+            });
+        }
+    }
+
+    function createProjectCard(p) {
+        const template = document.getElementById('projectCardTemplate');
+        const clone = template.content.cloneNode(true);
+        const data = p.dados || {};
+
+        // Populate basic info
+        clone.querySelector('.cliente-nome').textContent = p.cliente_nome;
+        clone.querySelector('.data-criacao').textContent = `Criado em: ${p.data_criacao.substring(0, 10)}`;
+        clone.querySelector('.count-tickets').textContent = p.stats.tickets || 0;
+        clone.querySelector('.count-planilhas').textContent = p.stats.planilhas || 0;
+        clone.querySelector('.count-links').textContent = p.stats.links || 0;
+
+        // Status Badge
+        const statusBadge = clone.querySelector('.project-status-badge');
+        statusBadge.textContent = p.status;
+        statusBadge.className = `badge badge-${p.status.toLowerCase()}`;
+
+        // Card Border/Status
+        const cardDiv = clone.querySelector('.card-project');
+        cardDiv.classList.add(`status-${p.status.toLowerCase()}`);
+        cardDiv.onclick = () => window.location.href = `/gestao_projetos/workspace/${p.id}`;
+
+        // Completion Date
+        if (p.status === 'Concluído' && data.data_finalizacao) {
+            const compDate = clone.querySelector('.completion-date-badge');
+            compDate.textContent = `Fim: ${data.data_finalizacao}`;
+            compDate.style.display = 'block';
+        }
+
+        // Progress Calculation
+        const progress = calculateProgress(data);
+        clone.querySelector('.progress-percent').textContent = `${progress}%`;
+        clone.querySelector('.progress-bar-fill').style.width = `${progress}%`;
+
+        // Delete button
+        const delBtn = clone.querySelector('.delete-btn');
+        delBtn.onclick = (e) => {
+            e.stopPropagation();
+            confirmDelete(p.id, p.cliente_nome);
+        };
+
+        return clone;
+    }
+
+    function calculateProgress(data) {
+        if (!data.etapas || data.etapas.length === 0) return 0;
+
+        const stepsPerStage = 4;
+        const totalSteps = data.etapas.length * stepsPerStage;
+        let completedSteps = 0;
+
+        data.etapas.forEach(etapa => {
+            if (etapa.estudo) completedSteps++;
+            if (etapa.desenv) completedSteps++;
+            if (etapa.matchs) completedSteps++;
+            if (etapa.revisao) completedSteps++;
+        });
+
+        return Math.round((completedSteps / totalSteps) * 100);
+    }
+
+    function confirmDelete(projectId, projectName) {
+        const password = prompt(`Para excluir o projeto "${projectName}", digite a senha:`);
+        if (password === 'WG123DEL') {
+            if (confirm('Tem certeza absoluta? Esta ação não pode ser desfeita.')) {
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = `/gestao_projetos/delete/${projectId}`;
+                document.body.appendChild(form);
+                form.submit();
+            }
+        } else if (password !== null) {
+            alert('Senha incorreta!');
+        }
+    }
 </script>
 {% endblock %}
