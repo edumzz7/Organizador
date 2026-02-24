@@ -174,7 +174,7 @@
         // Card Border/Status
         const cardDiv = clone.querySelector('.card-project');
         cardDiv.classList.add(`status-${p.status.toLowerCase()}`);
-        cardDiv.onclick = () => window.location.href = `/gestao_projetos/workspace/${p.id}`;
+        cardDiv.onclick = () => window.location.href = `/projetos/workspace/${p.id}`;
 
         // Completion Date
         if (p.status === 'Concluído' && data.data_finalizacao) {
@@ -221,7 +221,7 @@
             if (confirm('Tem certeza absoluta? Esta ação não pode ser desfeita.')) {
                 const form = document.createElement('form');
                 form.method = 'POST';
-                form.action = `/gestao_projetos/delete/${projectId}`;
+                form.action = `/projetos/delete/${projectId}`;
                 document.body.appendChild(form);
                 form.submit();
             }
