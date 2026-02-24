@@ -179,8 +179,8 @@
 
     // Inicialização da UI
     document.addEventListener('DOMContentLoaded', () => {
-        renderAll(); // Primeiro popula o DOM (especialmente o notesArea)
-        migrateData(); // Depois migra e salva se necessário
+        migrateData(); // Primeiro migra os dados para garantir a estrutura correta (evita crash no render)
+        renderAll(); // Depois popula o DOM (especialmente o notesArea e stages)
 
         // Auto-save ao digitar com debounce
         let timeout = null;
@@ -193,11 +193,23 @@
     function migrateData() {
         let changed = false;
 
+        // Garante a existência das estruturas básicas para evitar erros
+        if (!currentData.recursos) {
+            currentData.recursos = { pastas: [] };
+            changed = true;
+        }
+        if (!currentData.escopo) {
+            currentData.escopo = { lojas: [], marcas: [], categorias: [] };
+            changed = true;
+        }
+
         // 1. Recursos (Migração já existente)
-        if (Array.isArray(currentData.recursos.tickets)) {
+        if (currentData.recursos && Array.isArray(currentData.recursos.tickets)) {
             const geralItems = [];
             currentData.recursos.tickets.forEach(t => geralItems.push({ ...t, type: 'ticket' }));
-            currentData.recursos.planilhas.forEach(p => geralItems.push({ ...p, type: 'planilha' }));
+            if (Array.isArray(currentData.recursos.planilhas)) {
+                currentData.recursos.planilhas.forEach(p => geralItems.push({ ...p, type: 'planilha' }));
+            }
 
             currentData.recursos = {
                 pastas: [{ id: 'folder-' + Date.now(), nome: 'Geral', items: geralItems, collapsed: false }]
@@ -210,7 +222,7 @@
             currentData.tipo = "entrega única";
             changed = true;
         }
-        if (!currentData.etapas) {
+        if (!currentData.etapas || !Array.isArray(currentData.etapas) || currentData.etapas.length === 0) {
             currentData.etapas = [
                 { nome: "Etapa 1", estudo: false, desenv: false, matchs: false, revisao: false }
             ];
@@ -218,7 +230,7 @@
         }
 
         // 3. Categorias (De String para Objeto)
-        if (Array.isArray(currentData.escopo.categorias)) {
+        if (currentData.escopo && Array.isArray(currentData.escopo.categorias)) {
             currentData.escopo.categorias = currentData.escopo.categorias.map(cat => {
                 if (typeof cat === 'string') {
                     changed = true;
@@ -233,11 +245,16 @@
         }
 
         // 4. UI State (Colapsáveis)
-        if (!currentData.ui_state) {
+        if (!currentData.ui_state || !currentData.ui_state.collapsed) {
             currentData.ui_state = {
                 collapsed: { lojas: false, marcas: false, categorias: false }
             };
             changed = true;
+        }
+
+        // 5. Garantir notas_adesivas
+        if (currentData.notas_adesivas === undefined) {
+            currentData.notas_adesivas = '';
         }
 
         if (changed) saveState(null, true); // true indica que não deve ler do DOM
@@ -268,8 +285,13 @@
             });
         }
 
-        // Atualiza botões do header
+        // Atualiza botões do header e display do botão de adicionar etapa
         document.getElementById('typeButton').textContent = currentData.tipo.charAt(0).toUpperCase() + currentData.tipo.slice(1);
+
+        const addStageBtn = document.getElementById('addStageBtn');
+        if (addStageBtn) {
+            addStageBtn.style.display = currentData.tipo === 'entrega em etapas' ? 'inline-block' : 'none';
+        }
     }
 
     function renderResources() {
