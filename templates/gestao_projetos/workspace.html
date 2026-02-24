@@ -29,8 +29,8 @@
             </ul>
         </div>
         <div class="dropdown">
-            <button class="btn btn-outline-info btn-sm dropdown-toggle text-dark" type="button"
-                data-bs-toggle="dropdown" id="typeButton">
+            <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                id="typeButton">
                 {{ project.dados.tipo | default('Entrega Única') | title }}
             </button>
             <ul class="dropdown-menu">
@@ -129,18 +129,19 @@
             </div>
             <div class="modal-body">
                 <div class="mb-3">
-                    <label class="form-label small fw-bold">Vincular Loja</label>
-                    <select class="form-select form-select-sm" id="selectCatLoja">
-                        <option value="">Selecione...</option>
-                    </select>
+                    <label class="form-label small fw-bold">Vincular Lojas</label>
+                    <div id="checkListLojas" class="modal-checkbox-list">
+                        <!-- Checkboxes de lojas -->
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label small fw-bold">Vincular Marca</label>
-                    <select class="form-select form-select-sm" id="selectCatMarca">
-                        <option value="">Selecione...</option>
-                    </select>
+                    <label class="form-label small fw-bold">Vincular Marcas</label>
+                    <div id="checkListMarcas" class="modal-checkbox-list">
+                        <!-- Checkboxes de marcas -->
+                    </div>
                 </div>
-                <button class="btn btn-sm btn-primary w-100" onclick="saveCategoryLink()">Vincular</button>
+                <button class="btn btn-sm btn-primary w-100" onclick="saveCategoryLinks()">Vincular
+                    Selecionados</button>
             </div>
         </div>
     </div>
@@ -205,7 +206,11 @@
             currentData.escopo.categorias = currentData.escopo.categorias.map(cat => {
                 if (typeof cat === 'string') {
                     changed = true;
-                    return { nome: cat, lojas: [], marcas: [] };
+                    return { nome: cat, lojas: [], marcas: [], expanded: false };
+                }
+                if (cat.expanded === undefined) {
+                    cat.expanded = false;
+                    changed = true;
                 }
                 return cat;
             });
@@ -448,19 +453,34 @@
 
             if (type === 'categorias') {
                 const hasSubs = (item.lojas && item.lojas.length > 0) || (item.marcas && item.marcas.length > 0);
-                chip.className = 'chip category-chip';
+                chip.className = `chip category-chip d-flex flex-column align-items-start ${item.expanded ? 'expanded' : ''}`;
+
                 chip.innerHTML = `
-                    <span onclick="openCatLinks(${index})">${item.nome}</span>
-                    ${hasSubs ? '<i class="bi bi-chevron-down small text-muted"></i>' : ''}
-                    <span class="remove-btn" onclick="removeChip('categorias', ${index})">&times;</span>
+                    <div class="d-flex align-items-center w-100 gap-2">
+                        <span onclick="openCatLinks(${index})" style="cursor: pointer;">${item.nome}</span>
+                        ${hasSubs ? `<i class="bi bi-chevron-down small text-muted" onclick="toggleCatExpand(event, ${index})"></i>` : ''}
+                        <span class="ms-auto remove-btn" onclick="removeChip('categorias', ${index})">&times;</span>
+                    </div>
                 `;
 
                 if (hasSubs) {
                     const subDiv = document.createElement('div');
-                    subDiv.className = 'category-sub-items w-100 mt-1';
-                    item.lojas.forEach(l => subDiv.innerHTML += `<span class="sub-item-badge">L: ${l}</span>`);
-                    item.marcas.forEach(m => subDiv.innerHTML += `<span class="sub-item-badge">M: ${m}</span>`);
-                    chip.classList.add('flex-wrap');
+                    subDiv.className = 'category-sub-items';
+
+                    item.lojas.forEach(l => {
+                        subDiv.innerHTML += `
+                            <span class="sub-item-badge sub-item-badge-loja">
+                                ${l}
+                                <i class="bi bi-x nested-remove-btn" onclick="removeNestedItem(${index}, 'lojas', '${l}')"></i>
+                            </span>`;
+                    });
+                    item.marcas.forEach(m => {
+                        subDiv.innerHTML += `
+                            <span class="sub-item-badge sub-item-badge-marca">
+                                ${m}
+                                <i class="bi bi-x nested-remove-btn" onclick="removeNestedItem(${index}, 'marcas', '${m}')"></i>
+                            </span>`;
+                    });
                     chip.appendChild(subDiv);
                 }
             } else {
@@ -472,6 +492,20 @@
             }
             container.appendChild(chip);
         });
+    }
+
+    function toggleCatExpand(event, idx) {
+        event.stopPropagation();
+        currentData.escopo.categorias[idx].expanded = !currentData.escopo.categorias[idx].expanded;
+        renderChips('categorias', 'categoriasChips');
+        saveState();
+    }
+
+    function removeNestedItem(catIdx, type, itemName) {
+        const cat = currentData.escopo.categorias[catIdx];
+        cat[type] = cat[type].filter(i => i !== itemName);
+        renderChips('categorias', 'categoriasChips');
+        saveState();
     }
 
     function handleChipInput(event, type) {
@@ -500,28 +534,44 @@
         const cat = currentData.escopo.categorias[idx];
         document.getElementById('modalCatName').textContent = `Vincular à: ${cat.nome}`;
 
-        // Popula selects
-        const selectLoja = document.getElementById('selectCatLoja');
-        const selectMarca = document.getElementById('selectCatMarca');
+        // Popula checkboxes Lojas
+        const listLojas = document.getElementById('checkListLojas');
+        listLojas.innerHTML = currentData.escopo.lojas.map(l => `
+            <div class="checkbox-item">
+                <input type="checkbox" id="checkL-${l}" value="${l}" ${cat.lojas.includes(l) ? 'checked' : ''}>
+                <label for="checkL-${l}">${l}</label>
+            </div>
+        `).join('') || '<div class="text-muted small">Nenhuma loja cadastrada</div>';
 
-        selectLoja.innerHTML = '<option value="">Selecione Loja...</option>';
-        currentData.escopo.lojas.forEach(l => selectLoja.innerHTML += `<option value="${l}">${l}</option>`);
-
-        selectMarca.innerHTML = '<option value="">Selecione Marca...</option>';
-        currentData.escopo.marcas.forEach(m => selectMarca.innerHTML += `<option value="${m}">${m}</option>`);
+        // Popula checkboxes Marcas
+        const listMarcas = document.getElementById('checkListMarcas');
+        listMarcas.innerHTML = currentData.escopo.marcas.map(m => `
+            <div class="checkbox-item">
+                <input type="checkbox" id="checkM-${m}" value="${m}" ${cat.marcas.includes(m) ? 'checked' : ''}>
+                <label for="checkM-${m}">${m}</label>
+            </div>
+        `).join('') || '<div class="text-muted small">Nenhuma marca cadastrada</div>';
 
         const modal = new bootstrap.Modal(document.getElementById('categoryLinksModal'));
         modal.show();
     }
 
-    function saveCategoryLink() {
+    function saveCategoryLinks() {
         if (selectedCategoryIdx === null) return;
         const cat = currentData.escopo.categorias[selectedCategoryIdx];
-        const loja = document.getElementById('selectCatLoja').value;
-        const marca = document.getElementById('selectCatMarca').value;
 
-        if (loja && !cat.lojas.includes(loja)) cat.lojas.push(loja);
-        if (marca && !cat.marcas.includes(marca)) cat.marcas.push(marca);
+        // Coletar Lojas
+        const selectedLojas = Array.from(document.querySelectorAll('#checkListLojas input:checked')).map(cb => cb.value);
+        cat.lojas = selectedLojas;
+
+        // Coletar Marcas
+        const selectedMarcas = Array.from(document.querySelectorAll('#checkListMarcas input:checked')).map(cb => cb.value);
+        cat.marcas = selectedMarcas;
+
+        // Se adicionou algo, expandir automaticamente para mostrar
+        if (cat.lojas.length > 0 || cat.marcas.length > 0) {
+            cat.expanded = true;
+        }
 
         renderChips('categorias', 'categoriasChips');
         saveState();

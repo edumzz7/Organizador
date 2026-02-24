@@ -335,21 +335,77 @@
 }
 
 .category-sub-items {
-    background: #ffffff;
     border-radius: 8px;
-    padding: 8px;
+    padding: 0 5px;
     margin-top: 5px;
-    font-size: 0.85rem;
-    border: 1px solid #e9ecef;
+    font-size: 0.8rem;
+    display: none;
+    /* Escondido por padrão */
+    width: 100%;
+}
+
+.category-chip.expanded .category-sub-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.category-chip .bi-chevron-down {
+    transition: transform 0.2s;
+}
+
+.category-chip.expanded .bi-chevron-down {
+    transform: rotate(180deg);
 }
 
 .sub-item-badge {
-    background: #f8f9fa;
-    padding: 2px 8px;
-    border-radius: 10px;
+    padding: 1px 6px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    margin: 2px 0;
+}
+
+.sub-item-badge-loja {
+    background: #ced4da;
+    color: #343a40;
+}
+
+.sub-item-badge-marca {
+    background: #495057;
+    color: #ffffff;
+}
+
+.nested-remove-btn {
+    font-size: 10px;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    margin-left: 2px;
+}
+
+.nested-remove-btn:hover {
+    opacity: 1;
+    color: #dc3545;
+}
+
+.modal-checkbox-list {
+    max-height: 200px;
+    overflow-y: auto;
     border: 1px solid #dee2e6;
-    display: inline-block;
-    margin: 2px;
+    border-radius: 4px;
+    padding: 8px;
+    background: #f8f9fa;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 0;
+    font-size: 0.85rem;
 }
 
 /* Dashboard Changes */
